@@ -10,14 +10,11 @@ export default function SustainabilityCalc() {
   const [apy, setApy] = useState(8)
 
   const annualYield = deposit * (apy / 100)
-  const coverage = annualYield / COST // berapa kali yield menutup biaya tahunan
+  const coverage = annualYield / COST
   const perpetual = annualYield >= COST
-  const worstCaseYears = deposit / COST // tanpa yield, principal saja
-  const years = perpetual
-    ? Infinity
-    : deposit / (COST - annualYield)
+  const worstCaseYears = deposit / COST
+  const years = perpetual ? Infinity : deposit / (COST - annualYield)
 
-  // gauge 0..100 — 100% = perpetual.
   const gauge = Math.min(100, coverage * 100)
 
   return (
@@ -25,34 +22,58 @@ export default function SustainabilityCalc() {
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="bg-gradient-to-br from-violet-600 to-purple-800 text-white rounded-3xl p-7 shadow-lg"
+      whileHover={{
+        y: -6,
+        boxShadow:
+          '0 0 0 1px rgba(129, 140, 248, 0.4), 0 24px 64px rgba(99, 102, 241, 0.18), 0 8px 24px rgba(0, 0, 0, 0.65)',
+      }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      className="text-white p-7 backdrop-blur-xl"
+      style={{
+        background:
+          'linear-gradient(150deg, #1a1060 0%, #0e1840 45%, #0a1028 100%)',
+        border: '1px solid rgba(129, 140, 248, 0.25)',
+        boxShadow: '0 4px 28px rgba(0, 0, 0, 0.5)',
+        borderRadius: '1.5rem',
+      }}
     >
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center">
+        <div
+          className="w-12 h-12 rounded-2xl flex items-center justify-center"
+          style={{
+            background: 'rgba(129, 140, 248, 0.15)',
+            border: '1px solid rgba(129, 140, 248, 0.25)',
+          }}
+        >
           <Calculator size={22} className="text-white" />
         </div>
         <div>
-          <h3 className="font-semibold text-lg leading-tight">
+          <h3 className="font-semibold text-lg leading-tight text-white">
             Sustainability Calculator
           </h3>
-          <p className="text-xs text-violet-200">
+          <p className="text-xs" style={{ color: '#818CF8' }}>
             Hanya yield yang dipakai — principal tak tersentuh
           </p>
         </div>
       </div>
 
       {/* Headline */}
-      <div className="rounded-2xl bg-white/10 backdrop-blur p-5 text-center">
+      <div
+        className="rounded-2xl p-5 text-center"
+        style={{
+          background: 'rgba(255, 255, 255, 0.05)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+        }}
+      >
         {perpetual ? (
           <>
             <div className="flex items-center justify-center gap-2 text-4xl font-bold">
-              <InfinityIcon size={38} className="text-yellow-300" />
+              <InfinityIcon size={38} style={{ color: '#FDE68A' }} />
               <span>Perpetual</span>
             </div>
-            <p className="text-violet-100 text-sm mt-1">
+            <p className="text-sm mt-1" style={{ color: '#A5B4FC' }}>
               Yield menutup{' '}
-              <span className="font-bold text-yellow-300">
+              <span className="font-bold" style={{ color: '#FDE68A' }}>
                 {coverage.toFixed(1)}×
               </span>{' '}
               biaya storage tahunan — skill tak pernah hilang.
@@ -62,9 +83,11 @@ export default function SustainabilityCalc() {
           <>
             <div className="text-4xl font-bold">
               ~{years.toFixed(0)}{' '}
-              <span className="text-xl font-medium text-violet-200">tahun</span>
+              <span className="text-xl font-medium" style={{ color: '#818CF8' }}>
+                tahun
+              </span>
             </div>
-            <p className="text-violet-100 text-sm mt-1">
+            <p className="text-sm mt-1" style={{ color: '#A5B4FC' }}>
               Yield belum menutup biaya — perpanjang dari principal.
             </p>
           </>
@@ -73,19 +96,27 @@ export default function SustainabilityCalc() {
 
       {/* Gauge */}
       <div className="mt-5">
-        <div className="flex justify-between text-xs text-violet-200 mb-1.5">
+        <div className="flex justify-between text-xs mb-1.5" style={{ color: '#818CF8' }}>
           <span>Yield vs biaya storage</span>
           <span className="font-semibold text-white">
             {coverage >= 1 ? '100%+ ' : `${gauge.toFixed(0)}% `}covered
           </span>
         </div>
-        <div className="h-2.5 rounded-full bg-white/15 overflow-hidden">
+        <div
+          className="h-2.5 rounded-full overflow-hidden"
+          style={{ background: 'rgba(255, 255, 255, 0.08)' }}
+        >
           <motion.div
             key={gauge}
             initial={{ width: 0 }}
             animate={{ width: `${gauge}%` }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="h-full rounded-full bg-gradient-to-r from-yellow-300 to-emerald-400"
+            transition={{ duration: 0.55, ease: 'easeOut' }}
+            style={{
+              height: '100%',
+              borderRadius: '9999px',
+              background: 'linear-gradient(90deg, #FDE68A 0%, #34D399 100%)',
+              boxShadow: '0 0 10px rgba(253,230,138,0.3)',
+            }}
           />
         </div>
       </div>
@@ -112,8 +143,8 @@ export default function SustainabilityCalc() {
         />
       </div>
 
-      <p className="mt-5 flex items-start gap-2 text-xs text-violet-200">
-        <Sparkles size={14} className="flex-shrink-0 mt-0.5 text-yellow-300" />
+      <p className="mt-5 flex items-start gap-2 text-xs" style={{ color: '#818CF8' }}>
+        <Sparkles size={14} className="flex-shrink-0 mt-0.5" style={{ color: '#FDE68A' }} />
         Tanpa yield sekalipun, {deposit} SUI mendanai ~
         {worstCaseYears.toFixed(0)} tahun storage dari principal.
       </p>
@@ -141,8 +172,10 @@ function Slider({
   return (
     <div>
       <div className="flex justify-between text-sm mb-2">
-        <span className="text-violet-100 font-medium">{label}</span>
-        <span className="font-bold">
+        <span className="font-medium" style={{ color: '#A5B4FC' }}>
+          {label}
+        </span>
+        <span className="font-bold text-white">
           {value}
           {suffix}
         </span>
@@ -154,7 +187,8 @@ function Slider({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-white/20 accent-yellow-300"
+        className="w-full h-1.5 rounded-full appearance-none cursor-pointer accent-yellow-300"
+        style={{ background: 'rgba(255,255,255,0.12)' }}
       />
     </div>
   )
