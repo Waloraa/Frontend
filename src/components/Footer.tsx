@@ -15,20 +15,35 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer style={{ background: '#1C1917' }} className="w-full text-gray-400">
+    <footer
+      className="w-full"
+      style={{ background: '#040912', borderTop: '1px solid rgba(99,102,241,0.12)' }}
+    >
       {/* CTA Banner */}
-      <div className="border-b border-white/10">
+      <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="max-w-6xl mx-auto px-6 md:px-14 py-16 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h3
-              className="text-3xl sm:text-4xl font-bold text-white leading-tight"
-              style={{ fontFamily: '"Helvetica Now Display", "Helvetica Neue", Arial, sans-serif' }}
+              className="text-3xl sm:text-4xl font-bold leading-tight"
+              style={{
+                color: '#E2E8F0',
+                fontFamily: '"Helvetica Now Display", "Helvetica Neue", Arial, sans-serif',
+              }}
             >
               Beri agent-mu memory
               <br />
-              yang tak pernah hilang.
+              <span
+                style={{
+                  background: 'linear-gradient(135deg, #818CF8 0%, #38BDF8 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                yang tak pernah hilang.
+              </span>
             </h3>
-            <p className="mt-3 text-gray-400 text-sm max-w-sm">
+            <p className="mt-3 text-sm max-w-sm" style={{ color: '#374151' }}>
               Skill memory abadi untuk AI agent — di atas Walrus, didanai oleh
               yield. Cukup 5 baris kode.
             </p>
@@ -37,7 +52,11 @@ export default function Footer() {
             href="#dashboard"
             whileHover={{ scale: 1.04, filter: 'brightness(1.1)' }}
             whileTap={{ scale: 0.96 }}
-            className="flex-shrink-0 bg-violet-600 hover:bg-violet-700 text-white font-semibold px-8 py-4 rounded-full shadow-lg transition-colors text-base"
+            className="flex-shrink-0 text-white font-semibold px-8 py-4 rounded-full text-base"
+            style={{
+              background: 'linear-gradient(135deg, #6366F1 0%, #3B82F6 100%)',
+              boxShadow: '0 6px 24px rgba(99,102,241,0.4)',
+            }}
           >
             View Live Dashboard
           </motion.a>
@@ -49,12 +68,18 @@ export default function Footer() {
         {/* Brand */}
         <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-purple-700 flex items-center justify-center">
+            <div
+              className="w-8 h-8 rounded-lg flex items-center justify-center"
+              style={{
+                background: 'linear-gradient(135deg, #818CF8, #3B82F6)',
+                boxShadow: '0 0 12px rgba(99,102,241,0.4)',
+              }}
+            >
               <Layers size={14} className="text-white" />
             </div>
-            <span className="text-white font-semibold text-sm">Waloraa</span>
+            <span className="text-white font-semibold text-sm">Walora</span>
           </div>
-          <p className="text-xs text-gray-500 leading-relaxed max-w-[200px]">
+          <p className="text-xs leading-relaxed max-w-[200px]" style={{ color: '#374151' }}>
             Persistent skill memory infrastructure for AI agents on Walrus.
           </p>
           <div className="flex items-center gap-3 mt-1">
@@ -65,9 +90,19 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={label}
-                className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+                style={{
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.background = 'rgba(129,140,248,0.12)')
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.background = 'rgba(255,255,255,0.04)')
+                }
               >
-                <Icon size={15} className="text-gray-400" />
+                <Icon size={15} style={{ color: '#374151' }} />
               </a>
             ))}
           </div>
@@ -76,11 +111,22 @@ export default function Footer() {
         {/* Link columns */}
         {Object.entries(links).map(([heading, items]) => (
           <div key={heading} className="flex flex-col gap-3">
-            <p className="text-white text-xs font-semibold uppercase tracking-wider">{heading}</p>
+            <p
+              className="text-xs font-semibold uppercase tracking-wider"
+              style={{ color: '#64748B' }}
+            >
+              {heading}
+            </p>
             <ul className="flex flex-col gap-2">
               {items.map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-sm text-gray-500 hover:text-gray-200 transition-colors">
+                  <a
+                    href="#"
+                    className="text-sm transition-colors"
+                    style={{ color: '#1F2937' }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = '#94A3B8')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '#1F2937')}
+                  >
                     {item}
                   </a>
                 </li>
@@ -91,11 +137,14 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-6 md:px-14 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
-          <span>© {new Date().getFullYear()} Waloraa · Walrus Track, Sui Overflow 2026 · MIT</span>
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+        <div className="max-w-6xl mx-auto px-6 md:px-14 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs" style={{ color: '#1F2937' }}>
+          <span>© {new Date().getFullYear()} Walora · Walrus Track, Sui Overflow 2026 · MIT</span>
           <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />
+            <span
+              className="w-1.5 h-1.5 rounded-full inline-block animate-pulse"
+              style={{ background: '#34D399' }}
+            />
             Live on Sui testnet
           </span>
         </div>

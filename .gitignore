@@ -34,3 +34,13 @@ pnpm-debug.log*
 .env
 .env.*
 !.env.example
+
+# Reference media (design references, not part of the app)
+public/CardAnimationExample.mp4
+public/Hover_Scroll Interactive Animation.mp4
+public/hf_*.mp4
+public/Screenshot/
+
+# Scratch notes
+Buat lanjut claude.txt
+*.claude.txt

@@ -101,7 +101,7 @@ export default function DashboardSection() {
             </span>
           </h2>
           <p className="mt-4 text-lg max-w-xl mx-auto" style={{ color: '#64748B' }}>
-            State Waloraa yang berjalan di Sui testnet — vault, skill memory, dan
+            State Walora yang berjalan di Sui testnet — vault, skill memory, dan
             riwayat auto-renewal, dibaca langsung dari chain & Walrus.
           </p>
 
