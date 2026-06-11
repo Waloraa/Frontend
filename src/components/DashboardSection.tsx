@@ -14,7 +14,7 @@ export default function DashboardSection() {
   return (
     <section
       id="dashboard"
-      className="relative w-full py-28 px-6 md:px-14 scroll-mt-16 overflow-hidden"
+      className="relative z-10 w-full -mt-24 pt-10 md:pt-12 pb-28 px-6 md:px-14 scroll-mt-16 overflow-hidden"
       style={{
         background: 'linear-gradient(160deg, #040912 0%, #071020 45%, #04091A 100%)',
       }}

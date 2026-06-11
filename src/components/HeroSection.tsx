@@ -28,13 +28,17 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      style={{ width: '100vw', marginLeft: 'calc(50% - 50vw)' }}
+      style={{
+        width: '100vw',
+        maxWidth: '100vw',
+        marginLeft: 'calc(50% - 50vw)',
+      }}
       className="relative min-h-screen overflow-hidden"
     >
       {/* Background video with parallax */}
       <motion.div
-        style={{ y: videoY, scale: videoScale }}
-        className="absolute inset-0 w-full h-full"
+        style={{ y: videoY, scale: videoScale, transformOrigin: 'right center' }}
+        className="absolute top-0 bottom-0 -left-8 -right-16 md:-right-24"
       >
         <video
           autoPlay
@@ -49,7 +53,7 @@ export default function HeroSection() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center center',
+            objectPosition: 'center right',
           }}
         />
       </motion.div>

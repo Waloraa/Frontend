@@ -43,6 +43,7 @@ export default function FeaturesSection() {
   // resize so the row always scrolls EXACTLY to the last card — no over/under-scroll
   // regardless of screen dimension.
   const [distance, setDistance] = useState(0)
+  const scrollDistance = distance > 0 ? Math.min(distance * 0.12, 120) : 0
   useLayoutEffect(() => {
     const measure = () => {
       const track = trackRef.current
@@ -62,6 +63,8 @@ export default function FeaturesSection() {
   })
 
   // Scroll DOWN → row moves LEFT (x negative). Scroll UP → row moves RIGHT (back).
+  // The sweep uses the full pinned range so the last card is reachable without a
+  // long blank dwell before the dashboard.
   const x = useTransform(scrollYProgress, [0, 1], [0, -distance])
 
   // Background text parallax
@@ -74,13 +77,17 @@ export default function FeaturesSection() {
       id="how"
       ref={sectionRef}
       className="relative scroll-mt-16"
-      // Height = 1 viewport (the sticky pin) + a fraction of the horizontal travel.
-      // Faktor 0.4 = 1px scroll vertikal menggerakkan ~2.5px horizontal → lebih cepat,
-      // sekaligus memperpendek section sehingga tak ada gap besar setelahnya.
-      style={{ height: `calc(100vh + ${distance * 0.4}px)`, background: '#050C1A' }}
+      // Height = 1 viewport (the sticky pin) + a capped scroll distance.
+      // The cap keeps the horizontal sweep fast and prevents a large empty
+      // transition area before Live Dashboard.
+      style={{ height: `calc(100vh + ${scrollDistance}px)`, background: '#050C1A' }}
     >
-      {/* Sticky viewport — stays pinned while scroll drives horizontal motion */}
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
+      {/* Sticky viewport — stays pinned while scroll drives horizontal motion.
+          Layout: header (atas) · row STRETCH mengisi sisa tinggi (flex-1) · hint
+          (bawah). Karena kartu meregang penuh, panel SELALU terisi penuh tinggi
+          viewport — tidak ada pita kosong yang terbaca sebagai gap sebelum
+          Live Dashboard, berapapun tinggi layar. */}
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
 
         {/* Ambient orbs */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -119,7 +126,7 @@ export default function FeaturesSection() {
         </motion.div>
 
         {/* Header */}
-        <div className="relative px-6 md:px-14 max-w-6xl mx-auto w-full mb-10 text-center">
+        <div className="relative px-6 md:px-14 max-w-6xl mx-auto w-full text-center pt-20 md:pt-24 pb-5 flex-shrink-0">
           <span
             className="inline-block text-xs font-semibold tracking-widest uppercase mb-3 px-4 py-1.5 rounded-full"
             style={{
@@ -149,11 +156,16 @@ export default function FeaturesSection() {
           </h2>
         </div>
 
-        {/* ── HORIZONTAL ROW — bergerak kiri/kanan mengikuti scroll ── */}
+        {/* ── HORIZONTAL ROW — bergerak kiri/kanan mengikuti scroll ──
+            Baris di-tengah-kan vertikal (items-center) dengan tinggi DIBATASI
+            (lihat height di style motion.div) supaya kartu proporsional — tidak
+            meregang penuh layar. Sisa ruang kecil di bawah tertutup oleh
+            -mt-24 pada DashboardSection sehingga gap tetap tak muncul. */}
+        <div className="relative flex-1 min-h-0 flex items-center w-full">
         <motion.div
           ref={trackRef}
-          style={{ x }}
-          className="relative flex gap-5 px-6 md:px-14 will-change-transform"
+          style={{ x, height: 'clamp(340px, 52vh, 440px)' }}
+          className="flex gap-5 px-6 md:px-14 items-stretch w-max max-w-none will-change-transform"
         >
 
           {/* Card 1 — Skill Memory */}
@@ -311,9 +323,10 @@ export default function FeaturesSection() {
           </HoverCard>
 
         </motion.div>
+        </div>
 
         {/* Scroll hint */}
-        <div className="relative px-6 md:px-14 max-w-6xl mx-auto w-full mt-8">
+        <div className="relative px-6 md:px-14 max-w-6xl mx-auto w-full text-center pt-4 pb-7 flex-shrink-0">
           <span className="text-xs" style={{ color: '#334155' }}>
             Scroll ↓ untuk menjelajah · scroll ↑ untuk kembali
           </span>
