@@ -10,6 +10,8 @@ import {
 } from 'lucide-react'
 import { EXPLORER_OBJECT } from '../../lib/constants'
 import type { VaultState } from '../../lib/types'
+import TiltCard from '../ui/TiltCard'
+import CountUp from '../ui/CountUp'
 
 const sui = (n: number) =>
   `${n.toLocaleString('en-US', { maximumFractionDigits: 4 })} SUI`
@@ -64,14 +66,12 @@ export default function VaultCard({ vault }: { vault: VaultState }) {
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      whileHover={{
-        y: -6,
-        boxShadow:
-          '0 0 0 1px rgba(129, 140, 248, 0.35), 0 24px 64px rgba(99, 102, 241, 0.14), 0 8px 24px rgba(0, 0, 0, 0.6)',
-      }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+    >
+    <TiltCard
       style={CARD_BASE}
       className="p-7 backdrop-blur-xl"
+      hoverShadow="0 0 0 1px rgba(129, 140, 248, 0.35), 0 24px 64px rgba(99, 102, 241, 0.14), 0 8px 24px rgba(0, 0, 0, 0.6)"
     >
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
@@ -136,7 +136,7 @@ export default function VaultCard({ vault }: { vault: VaultState }) {
           className="text-4xl font-bold leading-none tracking-tight"
           style={{ color: '#F1F5F9' }}
         >
-          {sui(vault.funds)}
+          <CountUp value={vault.funds} decimals={2} suffix=" SUI" />
         </span>
         <span className="text-sm mb-1" style={{ color: '#475569' }}>
           total funds
@@ -211,6 +211,7 @@ export default function VaultCard({ vault }: { vault: VaultState }) {
         </span>{' '}
         memperpanjang storage otomatis dari yield — principal aman.
       </p>
+    </TiltCard>
     </motion.div>
   )
 }

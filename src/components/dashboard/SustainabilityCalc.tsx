@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Infinity as InfinityIcon, Calculator, Sparkles } from 'lucide-react'
 import { ECONOMICS } from '../../lib/constants'
+import TiltCard from '../ui/TiltCard'
 
 const { storageCostPerYear: COST } = ECONOMICS
 
@@ -22,13 +23,11 @@ export default function SustainabilityCalc() {
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      whileHover={{
-        y: -6,
-        boxShadow:
-          '0 0 0 1px rgba(129, 140, 248, 0.4), 0 24px 64px rgba(99, 102, 241, 0.18), 0 8px 24px rgba(0, 0, 0, 0.65)',
-      }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+    >
+    <TiltCard
       className="text-white p-7 backdrop-blur-xl"
+      hoverShadow="0 0 0 1px rgba(129, 140, 248, 0.4), 0 24px 64px rgba(99, 102, 241, 0.18), 0 8px 24px rgba(0, 0, 0, 0.65)"
       style={{
         background:
           'linear-gradient(150deg, #1a1060 0%, #0e1840 45%, #0a1028 100%)',
@@ -148,6 +147,7 @@ export default function SustainabilityCalc() {
         Tanpa yield sekalipun, {deposit} SUI mendanai ~
         {worstCaseYears.toFixed(0)} tahun storage dari principal.
       </p>
+    </TiltCard>
     </motion.div>
   )
 }

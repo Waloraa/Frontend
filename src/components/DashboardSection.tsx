@@ -1,11 +1,31 @@
 import { motion } from 'framer-motion'
-import { Radio, RefreshCw, AlertCircle } from 'lucide-react'
+import {
+  Radio,
+  RefreshCw,
+  AlertCircle,
+  Search,
+  LayoutDashboard,
+  Vault as VaultIcon,
+  Brain,
+  History,
+  Calculator,
+  Bell,
+} from 'lucide-react'
 import { useWaloraaData } from '../hooks/useWaloraaData'
 import VaultCard from './dashboard/VaultCard'
 import SkillTimeline from './dashboard/SkillTimeline'
 import RenewalLog from './dashboard/RenewalLog'
 import SustainabilityCalc from './dashboard/SustainabilityCalc'
 import CreateVaultCard from './dashboard/CreateVaultCard'
+
+// Sidebar ala app window — Overview aktif, sisanya dekoratif (hover only).
+const NAV = [
+  { icon: LayoutDashboard, label: 'Overview', active: true },
+  { icon: VaultIcon, label: 'Vault' },
+  { icon: Brain, label: 'Skill Memory' },
+  { icon: History, label: 'Renewals' },
+  { icon: Calculator, label: 'Sustainability' },
+]
 
 export default function DashboardSection() {
   const { vault, index, events, source, loading, error, refresh } =
@@ -14,167 +34,192 @@ export default function DashboardSection() {
   return (
     <section
       id="dashboard"
-      className="relative z-10 w-full -mt-24 pt-10 md:pt-12 pb-28 px-6 md:px-14 scroll-mt-16 overflow-hidden"
-      style={{
-        background: 'linear-gradient(160deg, #040912 0%, #071020 45%, #04091A 100%)',
-      }}
+      className="relative z-10 w-full -mt-36 pb-28 px-4 sm:px-6 md:px-10 scroll-mt-16"
+      style={{ background: 'transparent' }}
     >
-      {/* Ambient orbs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div
-          style={{
-            position: 'absolute',
-            top: '8%',
-            left: '10%',
-            width: 480,
-            height: 480,
-            background:
-              'radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%)',
-            borderRadius: '50%',
-            filter: 'blur(2px)',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '12%',
-            right: '8%',
-            width: 560,
-            height: 560,
-            background:
-              'radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%)',
-            borderRadius: '50%',
-            filter: 'blur(2px)',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 800,
-            height: 400,
-            background:
-              'radial-gradient(ellipse, rgba(99,102,241,0.04) 0%, transparent 65%)',
-          }}
-        />
-      </div>
-
       <div className="relative max-w-6xl mx-auto">
-        {/* Header */}
+        {/* App window frame — dashboard panel ala referensi */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 48 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16"
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="overflow-hidden backdrop-blur-xl"
+          style={{
+            background: 'rgba(7, 12, 28, 0.97)',
+            border: '1px solid rgba(99, 102, 241, 0.22)',
+            borderRadius: '20px',
+            boxShadow:
+              '0 0 0 1px rgba(99,102,241,0.06), 0 40px 120px rgba(0,0,0,0.65), 0 0 80px rgba(99,102,241,0.07)',
+          }}
         >
-          <span
-            className="inline-block text-xs font-semibold tracking-widest uppercase mb-4 px-4 py-1.5 rounded-full"
-            style={{
-              background: 'rgba(99, 102, 241, 0.12)',
-              color: '#818CF8',
-              border: '1px solid rgba(99, 102, 241, 0.2)',
-            }}
+          {/* Window header bar */}
+          <div
+            className="flex items-center justify-between gap-4 px-5 sm:px-6 py-4"
+            style={{ borderBottom: '1px solid rgba(99, 102, 241, 0.14)' }}
           >
-            Live Dashboard
-          </span>
-          <h2
-            className="text-4xl sm:text-5xl font-bold leading-tight mt-2"
-            style={{
-              color: '#E2E8F0',
-              fontFamily: '"Helvetica Now Display", "Helvetica Neue", Arial, sans-serif',
-            }}
-          >
-            Memory yang hidup,
-            <br />
-            <span
-              style={{
-                background: 'linear-gradient(135deg, #818CF8 0%, #38BDF8 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
-              on-chain & terverifikasi.
-            </span>
-          </h2>
-          <p className="mt-4 text-lg max-w-xl mx-auto" style={{ color: '#64748B' }}>
-            State Walora yang berjalan di Sui testnet — vault, skill memory, dan
-            riwayat auto-renewal, dibaca langsung dari chain & Walrus.
-          </p>
+            <div className="flex items-center gap-3 min-w-0">
+              <h2
+                className="text-base sm:text-lg font-semibold truncate"
+                style={{ color: '#E2E8F0', fontFamily: 'Inter, sans-serif' }}
+              >
+                Dashboard Overview
+              </h2>
+              <span
+                className="hidden sm:inline-flex items-center gap-2 text-[11px] font-semibold px-3 py-1 rounded-full flex-shrink-0"
+                style={
+                  source === 'live'
+                    ? {
+                        background: 'rgba(52, 211, 153, 0.1)',
+                        color: '#34D399',
+                        border: '1px solid rgba(52, 211, 153, 0.2)',
+                      }
+                    : {
+                        background: 'rgba(251, 191, 36, 0.1)',
+                        color: '#FBBF24',
+                        border: '1px solid rgba(251, 191, 36, 0.2)',
+                      }
+                }
+              >
+                <Radio
+                  size={11}
+                  className={source === 'live' ? 'animate-pulse' : ''}
+                />
+                {loading
+                  ? 'Memuat…'
+                  : source === 'live'
+                  ? 'Live · Sui testnet'
+                  : 'Demo data'}
+              </span>
+            </div>
 
-          {/* Status badge */}
-          <div className="mt-7 inline-flex items-center gap-3">
-            <span
-              className="inline-flex items-center gap-2 text-xs font-semibold px-3.5 py-1.5 rounded-full"
-              style={
-                source === 'live'
-                  ? {
-                      background: 'rgba(52, 211, 153, 0.1)',
-                      color: '#34D399',
-                      border: '1px solid rgba(52, 211, 153, 0.2)',
-                    }
-                  : {
-                      background: 'rgba(251, 191, 36, 0.1)',
-                      color: '#FBBF24',
-                      border: '1px solid rgba(251, 191, 36, 0.2)',
-                    }
-              }
-            >
-              <Radio
-                size={13}
-                className={source === 'live' ? 'animate-pulse' : ''}
-              />
-              {loading
-                ? 'Memuat data…'
-                : source === 'live'
-                ? 'Live · Sui testnet'
-                : 'Demo data'}
-            </span>
-            <button
-              onClick={refresh}
-              className="inline-flex items-center gap-1.5 text-xs font-medium transition-colors"
-              style={{ color: '#475569' }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = '#818CF8')
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = '#475569')
-              }
-            >
-              <RefreshCw size={13} className={loading ? 'animate-spin' : ''} />
-              Refresh
-            </button>
+            <div className="flex items-center gap-2.5 flex-shrink-0">
+              {/* Search pill — dekoratif, melengkapi tampilan app window */}
+              <div
+                className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs"
+                style={{
+                  background: 'rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  color: '#475569',
+                }}
+              >
+                <Search size={13} />
+                Search anything…
+              </div>
+              <button
+                onClick={refresh}
+                title="Refresh data"
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-indigo-500/20"
+                style={{
+                  background: 'rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  color: '#818CF8',
+                }}
+              >
+                <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
+              </button>
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center"
+                style={{
+                  background: 'rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  color: '#64748B',
+                }}
+              >
+                <Bell size={14} />
+              </div>
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-bold text-white"
+                style={{
+                  background: 'linear-gradient(135deg, #6366F1 0%, #3B82F6 100%)',
+                }}
+              >
+                W
+              </div>
+            </div>
           </div>
 
-          {error && (
-            <p
-              className="mt-3 inline-flex items-center gap-1.5 text-xs"
-              style={{ color: '#FBBF24' }}
+          <div className="flex">
+            {/* Sidebar */}
+            <aside
+              className="hidden lg:flex flex-col w-56 flex-shrink-0 p-4 gap-1"
+              style={{ borderRight: '1px solid rgba(99, 102, 241, 0.14)' }}
             >
-              <AlertCircle size={13} />
-              {error}
-            </p>
-          )}
+              <p
+                className="text-[10px] font-semibold tracking-widest uppercase px-3 mb-2"
+                style={{ color: '#475569' }}
+              >
+                General
+              </p>
+              {NAV.map((item) => {
+                const Icon = item.icon
+                return (
+                  <button
+                    key={item.label}
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-left transition-colors"
+                    style={
+                      item.active
+                        ? {
+                            background: 'rgba(99, 102, 241, 0.18)',
+                            color: '#C7D2FE',
+                            border: '1px solid rgba(99, 102, 241, 0.28)',
+                          }
+                        : { color: '#64748B', border: '1px solid transparent' }
+                    }
+                    onMouseEnter={(e) => {
+                      if (!item.active)
+                        e.currentTarget.style.background = 'rgba(255,255,255,0.04)'
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!item.active)
+                        e.currentTarget.style.background = 'transparent'
+                    }}
+                  >
+                    <Icon size={16} />
+                    {item.label}
+                  </button>
+                )
+              })}
+
+              <div className="mt-auto pt-6">
+                <p
+                  className="text-[11px] leading-relaxed px-3"
+                  style={{ color: '#374151' }}
+                >
+                  State dibaca langsung dari Sui testnet & Walrus.
+                </p>
+              </div>
+            </aside>
+
+            {/* Main content */}
+            <main className="flex-1 min-w-0 p-4 sm:p-5 md:p-6">
+              {error && (
+                <p
+                  className="mb-4 inline-flex items-center gap-1.5 text-xs"
+                  style={{ color: '#FBBF24' }}
+                >
+                  <AlertCircle size={13} />
+                  {error}
+                </p>
+              )}
+
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 items-start">
+                <div className="flex flex-col gap-5">
+                  <VaultCard vault={vault} />
+                  <RenewalLog events={events} />
+                </div>
+                <div className="flex flex-col gap-5">
+                  <SkillTimeline index={index} />
+                  <SustainabilityCalc />
+                </div>
+              </div>
+
+              <div className="mt-5">
+                <CreateVaultCard />
+              </div>
+            </main>
+          </div>
         </motion.div>
-
-        {/* Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-start">
-          <div className="flex flex-col gap-5">
-            <VaultCard vault={vault} />
-            <RenewalLog events={events} />
-          </div>
-          <div className="flex flex-col gap-5">
-            <SkillTimeline index={index} />
-            <SustainabilityCalc />
-          </div>
-        </div>
-
-        <div className="mt-5">
-          <CreateVaultCard />
-        </div>
       </div>
     </section>
   )

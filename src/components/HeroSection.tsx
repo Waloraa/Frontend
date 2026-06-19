@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRightCircle, Brain, Database, Infinity as InfinityIcon } from 'lucide-react'
+import { ArrowRightCircle, Database } from 'lucide-react'
+import ParticleField from './three/ParticleField'
 
 const fadeUp = (i: number) => ({
   hidden: { opacity: 0, y: 28 },
@@ -37,8 +38,8 @@ export default function HeroSection() {
     >
       {/* Background video with parallax */}
       <motion.div
-        style={{ y: videoY, scale: videoScale, transformOrigin: 'right center' }}
-        className="absolute top-0 bottom-0 -left-8 -right-16 md:-right-24"
+        style={{ y: videoY, scale: videoScale }}
+        className="absolute -top-8 -bottom-8 left-0 right-0"
       >
         <video
           autoPlay
@@ -53,55 +54,49 @@ export default function HeroSection() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center right',
+            objectPosition: 'center',
           }}
         />
       </motion.div>
 
-      {/* Dark blue left-to-right overlay */}
+      {/* Uniform dark-blue overlay — teks sekarang di tengah, jadi overlay merata */}
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{ background: 'rgba(4, 9, 26, 0.78)' }}
+      />
+      {/* Vignette samping agar fokus ke tengah */}
       <div
         className="absolute inset-0 z-[1]"
         style={{
           background:
-            'linear-gradient(to right, rgba(4,9,26,0.97) 0%, rgba(4,9,26,0.88) 45%, rgba(4,9,26,0.55) 70%, rgba(4,9,26,0.2) 100%)',
+            'radial-gradient(ellipse 90% 70% at 50% 45%, transparent 0%, rgba(4,9,26,0.55) 100%)',
         }}
       />
 
-      {/* Bottom fade into the next section */}
+      {/* Bottom fade into the dashboard panel */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-48 z-[1]"
+        className="absolute bottom-0 left-0 right-0 h-56 z-[1]"
         style={{
           background: 'linear-gradient(to bottom, transparent 0%, #050C1A 100%)',
         }}
       />
 
-      {/* Ambient glow */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-[2]">
-        <div
-          style={{
-            position: 'absolute',
-            top: '25%',
-            left: '-5%',
-            width: 600,
-            height: 600,
-            background:
-              'radial-gradient(circle, rgba(99,102,241,0.09) 0%, transparent 65%)',
-            borderRadius: '50%',
-          }}
-        />
+      {/* 3D particle neural network */}
+      <div className="absolute inset-0 z-[2] pointer-events-none">
+        <ParticleField />
       </div>
 
-      {/* Content — pt-24 to clear fixed navbar */}
-      <div className="relative z-10 flex flex-col justify-center min-h-screen px-8 md:px-14 lg:px-20 pt-24 max-w-2xl">
+      {/* Content — centered, pt utk navbar, pb besar agar dashboard panel mengintip */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-screen px-6 md:px-10 pt-24 pb-40 max-w-4xl mx-auto">
         <motion.span
           variants={fadeUp(0)}
           initial="hidden"
           animate="visible"
-          className="inline-flex w-fit items-center gap-2 text-xs font-semibold tracking-wide px-3.5 py-1.5 rounded-full mb-5"
+          className="inline-flex w-fit items-center gap-2 text-xs font-semibold tracking-wide px-3.5 py-1.5 rounded-full mb-7"
           style={{
             background: 'rgba(99, 102, 241, 0.14)',
-            color: '#818CF8',
-            border: '1px solid rgba(99, 102, 241, 0.28)',
+            color: '#A5B4FC',
+            border: '1px solid rgba(99, 102, 241, 0.3)',
           }}
         >
           <span
@@ -115,31 +110,29 @@ export default function HeroSection() {
           variants={fadeUp(1)}
           initial="hidden"
           animate="visible"
-          className="text-[1.9rem] sm:text-[2.4rem] lg:text-[2.8rem] font-bold leading-[1.15] tracking-tight"
           style={{
-            color: '#F1F5F9',
-            fontFamily: '"Helvetica Now Display", "Helvetica Neue", Arial, sans-serif',
+            fontFamily: '"Instrument Serif", Georgia, serif',
+            fontSize: 'clamp(2.8rem, 7vw, 6rem)',
+            lineHeight: 1.1,
+            letterSpacing: '-0.015em',
+            color: '#F8FAFC',
+            fontWeight: 400,
           }}
         >
-          <span className="inline-flex items-center gap-2.5">
-            <Brain size={28} style={{ color: '#818CF8' }} className="flex-shrink-0" />
-            Agents that learn.
-          </span>
+          Agents that learn,
           <br />
-          <span className="inline-flex items-center gap-2.5 flex-wrap">
-            Memory that lasts{' '}
-            <InfinityIcon size={26} style={{ color: '#818CF8' }} className="flex-shrink-0" />
-          </span>
-          <br />
+          memory <em style={{ fontStyle: 'italic', margin: '0 0.06em' }}>that</em>{' '}
+          lasts{' '}
           <span
             style={{
+              fontStyle: 'italic',
               background: 'linear-gradient(135deg, #818CF8 0%, #38BDF8 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}
           >
-            forever.
+            forever
           </span>
         </motion.h1>
 
@@ -147,50 +140,54 @@ export default function HeroSection() {
           variants={fadeUp(2)}
           initial="hidden"
           animate="visible"
-          className="mt-5 text-sm sm:text-base leading-relaxed max-w-md"
-          style={{ color: '#94A3B8' }}
+          className="mt-6 leading-relaxed mx-auto"
+          style={{
+            fontFamily: 'Inter, sans-serif',
+            fontWeight: 400,
+            fontSize: 18,
+            color: 'rgba(255,255,255,0.7)',
+            maxWidth: 662,
+          }}
         >
-          Walora memberi AI agent kemampuan menyimpan & memanggil kembali{' '}
-          <span className="font-semibold" style={{ color: '#E2E8F0' }}>
-            skill dari pengalaman
-          </span>{' '}
-          — tersimpan di Walrus, didanai selamanya oleh yield Scallop.
+          Walora memberi AI agent kemampuan menyimpan & memanggil kembali skill
+          dari pengalaman — tersimpan permanen di Walrus, didanai selamanya oleh
+          yield Scallop. Sekali deposit, memory hidup puluhan tahun.
         </motion.p>
 
         <motion.div
           variants={fadeUp(3)}
           initial="hidden"
           animate="visible"
-          className="mt-8 flex flex-wrap items-center gap-3"
+          className="mt-9 flex flex-wrap items-center justify-center gap-3"
         >
           <motion.a
             href="#dashboard"
-            whileHover={{ scale: 1.04, filter: 'brightness(1.1)' }}
-            whileTap={{ scale: 0.96 }}
-            className="inline-flex items-center gap-3 text-white font-semibold text-base px-7 py-3.5 rounded-full"
+            whileHover={{ scale: 1.03, filter: 'brightness(1.12)' }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2.5 text-white px-7 py-3.5 rounded-[10px]"
             style={{
+              fontFamily: 'Cabin, Inter, sans-serif',
+              fontWeight: 500,
+              fontSize: 16,
               background: 'linear-gradient(135deg, #6366F1 0%, #3B82F6 100%)',
               boxShadow: '0 6px 28px rgba(99, 102, 241, 0.45)',
             }}
           >
             View Live Dashboard
-            <ArrowRightCircle size={20} />
+            <ArrowRightCircle size={19} />
           </motion.a>
           <motion.a
             href="#how"
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ scale: 1.03, filter: 'brightness(1.25)' }}
             whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-2 font-semibold text-base px-7 py-3.5 rounded-full transition-colors duration-200"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[10px]"
             style={{
-              background: 'rgba(255,255,255,0.06)',
-              color: '#E2E8F0',
-              border: '1px solid rgba(255,255,255,0.12)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.1)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.06)'
+              fontFamily: 'Cabin, Inter, sans-serif',
+              fontWeight: 500,
+              fontSize: 16,
+              background: '#16224A',
+              color: '#F6F7F9',
+              border: '1px solid rgba(129,140,248,0.22)',
             }}
           >
             How it Works
@@ -201,8 +198,8 @@ export default function HeroSection() {
           variants={fadeUp(4)}
           initial="hidden"
           animate="visible"
-          className="mt-10 flex items-center gap-6 text-xs font-medium flex-wrap"
-          style={{ color: '#475569' }}
+          className="mt-11 flex items-center justify-center gap-6 text-xs font-medium flex-wrap"
+          style={{ color: '#64748B', fontFamily: 'Inter, sans-serif' }}
         >
           <span className="flex items-center gap-1.5">
             <Database size={13} style={{ color: '#818CF8' }} />

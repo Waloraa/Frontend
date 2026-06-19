@@ -10,8 +10,8 @@ export default function App() {
     <div style={{ background: '#050C1A' }}>
       <Navbar />
       <HeroSection />
-      <FeaturesSection />
       <DashboardSection />
+      <FeaturesSection />
       <EconomicsSection />
       <Footer />
     </div>
