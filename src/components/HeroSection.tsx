@@ -149,9 +149,10 @@ export default function HeroSection() {
             maxWidth: 662,
           }}
         >
-          Walora gives AI agents the ability to store & recall skills from
-          experience — permanently stored on Walrus, funded forever by Scallop
-          yield. Deposit once, memory lives for decades.
+          Walrus Memory gives agents persistent skills. Walora makes them
+          self-sustaining — deposit SUI once into an endowment vault, Scallop
+          yield pays for storage renewal forever. Principal protected, memory
+          eternal.
         </motion.p>
 
         <motion.div
@@ -203,14 +204,14 @@ export default function HeroSection() {
         >
           <span className="flex items-center gap-1.5">
             <Database size={13} style={{ color: '#818CF8' }} />
-            Walrus-backed storage
+            Walrus Memory storage layer
           </span>
           <span className="flex items-center gap-1.5">
             <span
               className="w-1.5 h-1.5 rounded-full inline-block"
               style={{ background: '#34D399' }}
             />
-            Auto-funded vault
+            Endowment vault · zero manual renewal
           </span>
           <span className="flex items-center gap-1.5">
             <span

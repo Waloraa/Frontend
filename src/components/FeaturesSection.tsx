@@ -144,16 +144,19 @@ export default function FeaturesSection() {
               fontFamily: '"Helvetica Now Display", "Helvetica Neue", Arial, sans-serif',
             }}
           >
-            Three layers,{' '}
+            The funding layer for{' '}
             <span style={{
               background: 'linear-gradient(135deg, #818CF8 0%, #38BDF8 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}>
-              one eternal memory.
+              Walrus Memory.
             </span>
           </h2>
+          <p className="mt-3 text-sm max-w-lg mx-auto" style={{ color: '#475569' }}>
+            Walrus Memory stores agent skills. Walora solves the question no one answers — who pays for renewal? An endowment vault does, forever.
+          </p>
         </div>
 
         {/* ── HORIZONTAL ROW — bergerak kiri/kanan mengikuti scroll ──

@@ -35,7 +35,7 @@ const metrics = [
     icon: Hourglass,
     label: 'Duration (5 SUI)',
     value: '~80',
-    unit: 'tahun',
+    unit: 'years',
     gradient: 'linear-gradient(135deg, #FDE68A 0%, #F59E0B 100%)',
     glow: 'rgba(253,230,138,0.4)',
     hoverShadow: '0 0 0 1px rgba(253,230,138,0.22), 0 20px 48px rgba(245,158,11,0.1), 0 8px 20px rgba(0,0,0,0.6)',
@@ -387,7 +387,7 @@ export default function EconomicsSection() {
             </span>
           </h2>
           <AnimatedText
-            text="Principal never touched — only yield used for renewal. A small deposit funds skill storage for decades."
+            text="Walrus Memory bills for storage renewal. Walora pays that bill — permanently. Principal never touched, only yield spent. A small deposit sustains agent memory for decades."
             className="mt-5 text-lg max-w-xl mx-auto leading-relaxed"
             style={{ color: '#475569' }}
           />

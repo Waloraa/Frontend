@@ -30,7 +30,7 @@ export default function Footer() {
                 fontFamily: '"Helvetica Now Display", "Helvetica Neue", Arial, sans-serif',
               }}
             >
-              Give your agent memory
+              Make your agent's memory
               <br />
               <span
                 style={{
@@ -40,12 +40,12 @@ export default function Footer() {
                   backgroundClip: 'text',
                 }}
               >
-                that never fades.
+                self-sustaining.
               </span>
             </h3>
             <p className="mt-3 text-sm max-w-sm" style={{ color: '#374151' }}>
-              Eternal skill memory for AI agents — on Walrus, funded by yield.
-              Just 5 lines of code.
+              Walrus Memory stores it. Walora funds it — forever.
+              No subscriptions, no manual renewals. Just 5 lines of code.
             </p>
           </div>
           <motion.a
@@ -77,7 +77,7 @@ export default function Footer() {
             <span className="text-white font-semibold text-sm">Walora</span>
           </div>
           <p className="text-xs leading-relaxed max-w-[200px]" style={{ color: '#374151' }}>
-            Persistent skill memory infrastructure for AI agents on Walrus.
+            The endowment vault that funds Walrus Memory forever — deposit once, yield pays renewal automatically.
           </p>
           <div className="flex items-center gap-3 mt-1">
             {socials.map(({ icon: Icon, label, href }) => (
