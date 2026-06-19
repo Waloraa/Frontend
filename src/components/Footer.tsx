@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Github, Twitter, Layers } from 'lucide-react'
+import { Github, Twitter } from 'lucide-react'
 
 const links = {
   Product: ['How it Works', 'Dashboard', 'Economics', 'SDK'],
@@ -68,15 +68,12 @@ export default function Footer() {
         {/* Brand */}
         <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
           <div className="flex items-center gap-2">
-            <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center"
-              style={{
-                background: 'linear-gradient(135deg, #818CF8, #3B82F6)',
-                boxShadow: '0 0 12px rgba(99,102,241,0.4)',
-              }}
-            >
-              <Layers size={14} className="text-white" />
-            </div>
+            <img
+              src="/logo.png"
+              alt="Walora"
+              className="w-9 h-9 object-contain"
+              style={{ filter: 'drop-shadow(0 0 6px rgba(59,130,246,0.6))' }}
+            />
             <span className="text-white font-semibold text-sm">Walora</span>
           </div>
           <p className="text-xs leading-relaxed max-w-[200px]" style={{ color: '#374151' }}>

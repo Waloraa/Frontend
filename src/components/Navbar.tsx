@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import { Menu, X, Layers } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 const navLinks = [
   { label: 'How it Works', href: '#how' },
@@ -36,15 +36,12 @@ export default function Navbar() {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="relative flex items-center gap-2 cursor-pointer"
       >
-        <div
-          className="w-8 h-8 rounded-lg flex items-center justify-center"
-          style={{
-            background: 'linear-gradient(135deg, #818CF8 0%, #3B82F6 100%)',
-            boxShadow: '0 0 14px rgba(99, 102, 241, 0.45)',
-          }}
-        >
-          <Layers size={16} className="text-white" />
-        </div>
+        <img
+          src="/logo.png"
+          alt="Walora"
+          className="w-9 h-9 object-contain"
+          style={{ filter: 'drop-shadow(0 0 8px rgba(59,130,246,0.7))' }}
+        />
         <span className="font-semibold text-white text-sm tracking-tight hidden sm:block">
           Walora
         </span>
