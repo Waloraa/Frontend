@@ -24,9 +24,10 @@ export default function SustainabilityCalc() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      className="h-full"
     >
     <TiltCard
-      className="text-white p-7 backdrop-blur-xl"
+      className="text-white p-7 backdrop-blur-xl h-full flex flex-col"
       hoverShadow="0 0 0 1px rgba(129, 140, 248, 0.4), 0 24px 64px rgba(99, 102, 241, 0.18), 0 8px 24px rgba(0, 0, 0, 0.65)"
       style={{
         background:
@@ -142,7 +143,7 @@ export default function SustainabilityCalc() {
         />
       </div>
 
-      <p className="mt-5 flex items-start gap-2 text-xs" style={{ color: '#818CF8' }}>
+      <p className="mt-auto pt-5 flex items-start gap-2 text-xs" style={{ color: '#818CF8' }}>
         <Sparkles size={14} className="flex-shrink-0 mt-0.5" style={{ color: '#FDE68A' }} />
         Even without yield, {deposit} SUI funds ~
         {worstCaseYears.toFixed(0)} years of storage from principal.

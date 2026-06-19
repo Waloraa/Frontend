@@ -67,10 +67,11 @@ export default function VaultCard({ vault }: { vault: VaultState }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      className="h-full"
     >
     <TiltCard
       style={CARD_BASE}
-      className="p-7 backdrop-blur-xl"
+      className="p-7 backdrop-blur-xl h-full flex flex-col"
       hoverShadow="0 0 0 1px rgba(129, 140, 248, 0.35), 0 24px 64px rgba(99, 102, 241, 0.14), 0 8px 24px rgba(0, 0, 0, 0.6)"
     >
       {/* Header */}
@@ -204,7 +205,7 @@ export default function VaultCard({ vault }: { vault: VaultState }) {
         })}
       </div>
 
-      <p className="mt-5 text-xs" style={{ color: '#374151' }}>
+      <p className="mt-auto pt-5 text-xs" style={{ color: '#374151' }}>
         Keeper{' '}
         <span className="font-mono" style={{ color: '#4B5563' }}>
           {short(vault.keeper)}

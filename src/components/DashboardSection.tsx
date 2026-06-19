@@ -210,15 +210,14 @@ export default function DashboardSection() {
                 </p>
               )}
 
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 items-start">
-                <div className="flex flex-col gap-5">
-                  <VaultCard vault={vault} />
-                  <RenewalLog events={events} />
-                </div>
-                <div className="flex flex-col gap-5">
-                  <SkillTimeline index={index} />
-                  <SustainabilityCalc />
-                </div>
+              {/* Aligned grid: paired cards in each row stretch to equal
+                  height (items-stretch is default) so frame sizes stay
+                  consistent instead of the previous ragged two-column flow. */}
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
+                <VaultCard vault={vault} />
+                <SkillTimeline index={index} />
+                <RenewalLog events={events} />
+                <SustainabilityCalc />
               </div>
 
               {/* Agent Demo — working system with Walrus memory.

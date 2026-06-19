@@ -76,7 +76,7 @@ export default function RenewalLog({ events }: { events: RenewalEvent[] }) {
       }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       style={CARD_BASE}
-      className="p-7 backdrop-blur-xl"
+      className="p-7 backdrop-blur-xl h-full flex flex-col"
     >
       <div className="flex items-center gap-3 mb-6">
         <div
@@ -99,7 +99,7 @@ export default function RenewalLog({ events }: { events: RenewalEvent[] }) {
       </div>
 
       {events.length === 0 ? (
-        <p className="text-sm py-6 text-center" style={{ color: '#374151' }}>
+        <p className="text-sm py-6 my-auto text-center" style={{ color: '#374151' }}>
           No renewal events yet.
         </p>
       ) : (

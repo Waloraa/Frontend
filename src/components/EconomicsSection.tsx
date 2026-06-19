@@ -123,26 +123,46 @@ function MetricCard({ m, i }: { m: (typeof metrics)[0]; i: number }) {
 const imageRadius = 'rounded-[40px] sm:rounded-[50px] md:rounded-[60px]'
 
 // Slot gambar: render <img> bila ada `src`, selain itu tampil placeholder
-// gradient ber-label. Tinggal isi `src` dengan URL CloudFront nanti.
+// gradient ber-label. `fit='contain'` dipakai untuk aset ikon/logo (koin,
+// shell) supaya tampil utuh di atas backdrop gelap; `fit='cover'` untuk
+// foto/banner agar mengisi penuh slot.
 function ImageSlot({
   src,
   gradient,
   label,
   style,
   className = '',
+  fit = 'cover',
 }: {
   src?: string
   gradient: string
   label: string
   style?: React.CSSProperties
   className?: string
+  fit?: 'cover' | 'contain'
 }) {
   if (src) {
+    if (fit === 'contain') {
+      return (
+        <div
+          className={`w-full overflow-hidden ${imageRadius} ${className}`}
+          style={{ background: gradient, ...style }}
+        >
+          <img
+            src={src}
+            alt={label}
+            className="w-full h-full object-contain p-6 sm:p-8"
+            style={{ filter: 'drop-shadow(0 12px 28px rgba(0,0,0,0.45))' }}
+          />
+        </div>
+      )
+    }
     return (
       <img
         src={src}
         alt={label}
-        className={`w-full object-cover ${imageRadius} ${className}`}
+        loading="lazy"
+        className={`w-full h-full object-cover ${imageRadius} ${className}`}
         style={style}
       />
     )
@@ -164,7 +184,12 @@ function ImageSlot({
 
 // ── Data project cards (diadaptasi ke alur ekonomi Walora). Tiap gambar bisa
 //    diberi `src` (URL CloudFront) nanti; tanpa src → placeholder gradient. ──
-type ProjImg = { src?: string; gradient: string; label: string }
+type ProjImg = {
+  src?: string
+  gradient: string
+  label: string
+  fit?: 'cover' | 'contain'
+}
 type Project = {
   num: string
   label: string
@@ -178,9 +203,25 @@ const projects: Project[] = [
     label: 'Deposit',
     title: 'Vault Funding',
     images: [
-      { gradient: 'linear-gradient(140deg, #6366F1 0%, #818CF8 100%)', label: 'Deposit SUI' },
-      { gradient: 'linear-gradient(140deg, #4F46E5 0%, #7C3AED 100%)', label: 'Lock Principal' },
-      { gradient: 'linear-gradient(150deg, #818CF8 0%, #4F46E5 55%, #312E81 100%)', label: 'Vault Active' },
+      {
+        src: '/Vault%20Funding/ff11d856b3715ba6a521c1dbaf27477d.png',
+        gradient: 'linear-gradient(140deg, #6366F1 0%, #818CF8 100%)',
+        label: 'Deposit SUI',
+      },
+      {
+        src: '/Vault%20Funding/SUI.png',
+        gradient:
+          'radial-gradient(circle at 50% 38%, rgba(99,102,241,0.30) 0%, rgba(11,18,38,0.96) 72%)',
+        label: 'Lock Principal',
+        fit: 'contain',
+      },
+      {
+        src: '/Vault%20Funding/walrus-wal-crypto-logo-3d-icon-png-download-11711568.png',
+        gradient:
+          'radial-gradient(circle at 50% 40%, rgba(34,211,238,0.26) 0%, rgba(11,18,38,0.96) 74%)',
+        label: 'Vault Active',
+        fit: 'contain',
+      },
     ],
   },
   {
@@ -188,19 +229,45 @@ const projects: Project[] = [
     label: 'Yield',
     title: 'Scallop Endowment',
     images: [
-      { gradient: 'linear-gradient(140deg, #22D3EE 0%, #3B82F6 100%)', label: 'Supply → Scallop' },
-      { gradient: 'linear-gradient(140deg, #2DD4BF 0%, #0D9488 100%)', label: '~8% APY' },
-      { gradient: 'linear-gradient(150deg, #38BDF8 0%, #2563EB 55%, #1E3A8A 100%)', label: 'Yield Flowing' },
+      {
+        src: '/Scallop%20Endowment/1_2rEcpRpz4UdrUeqmJCRYlQ.png',
+        gradient: 'linear-gradient(140deg, #22D3EE 0%, #3B82F6 100%)',
+        label: 'Supply → Scallop',
+      },
+      {
+        src: '/Scallop%20Endowment/news-cointelegraph-3-Bx-6yBOM.jpg',
+        gradient: 'linear-gradient(140deg, #2DD4BF 0%, #0D9488 100%)',
+        label: '~8% APY',
+      },
+      {
+        src: '/Scallop%20Endowment/logo-BJvH6zKq.png',
+        gradient:
+          'radial-gradient(circle at 50% 40%, rgba(45,212,191,0.26) 0%, rgba(11,18,38,0.96) 74%)',
+        label: 'Yield Flowing',
+        fit: 'contain',
+      },
     ],
   },
   {
     num: '03',
     label: 'Renewal',
-    title: 'Eternal Storage',
+    title: 'Renewal Storage',
     images: [
-      { gradient: 'linear-gradient(140deg, #FDE68A 0%, #F59E0B 100%)', label: 'Keeper Trigger' },
-      { gradient: 'linear-gradient(140deg, #34D399 0%, #0D9488 100%)', label: 'Renew Walrus' },
-      { gradient: 'linear-gradient(150deg, #FDE68A 0%, #F59E0B 55%, #B45309 100%)', label: 'Eternal Memory' },
+      {
+        src: '/Storage%20Abadi/AI-Decrypt-Tease-gID_7.webp',
+        gradient: 'linear-gradient(140deg, #FDE68A 0%, #F59E0B 100%)',
+        label: 'Keeper Trigger',
+      },
+      {
+        src: '/Storage%20Abadi/walrus%20vault.png',
+        gradient: 'linear-gradient(140deg, #34D399 0%, #0D9488 100%)',
+        label: 'Renew Walrus',
+      },
+      {
+        src: '/Storage%20Abadi/WalrusMemory.jpg',
+        gradient: 'linear-gradient(150deg, #FDE68A 0%, #F59E0B 55%, #B45309 100%)',
+        label: 'Eternal Memory',
+      },
     ],
   },
 ]
@@ -262,12 +329,14 @@ function ProjectCard({ p }: { p: Project }) {
             src={p.images[0].src}
             gradient={p.images[0].gradient}
             label={p.images[0].label}
+            fit={p.images[0].fit}
             style={{ height: 'clamp(130px, 16vw, 230px)' }}
           />
           <ImageSlot
             src={p.images[1].src}
             gradient={p.images[1].gradient}
             label={p.images[1].label}
+            fit={p.images[1].fit}
             style={{ height: 'clamp(160px, 22vw, 340px)' }}
           />
         </div>
@@ -275,7 +344,9 @@ function ProjectCard({ p }: { p: Project }) {
           src={p.images[2].src}
           gradient={p.images[2].gradient}
           label={p.images[2].label}
+          fit={p.images[2].fit}
           className="h-full"
+          style={{ minHeight: 'clamp(310px, 40vw, 590px)' }}
         />
       </div>
     </div>

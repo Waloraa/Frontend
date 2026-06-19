@@ -121,7 +121,7 @@ export default function SearchMemory({ indexBlobId }: { indexBlobId?: string | n
         boxShadow: '0 4px 28px rgba(0, 0, 0, 0.45)',
         borderRadius: '1.5rem',
       }}
-      className="p-7 backdrop-blur-xl"
+      className="p-7 backdrop-blur-xl h-full flex flex-col"
     >
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">
@@ -218,7 +218,7 @@ export default function SearchMemory({ indexBlobId }: { indexBlobId?: string | n
         )}
       </AnimatePresence>
 
-      <p className="mt-5 text-[11px] leading-relaxed" style={{ color: '#334155' }}>
+      <p className="mt-auto pt-5 text-[11px] leading-relaxed" style={{ color: '#334155' }}>
         Search efficiency: fetch 1 index blob from Walrus → local cosine similarity → fetch
         only relevant skill blobs. Not O(N) — scales to thousands of skills.
       </p>

@@ -122,7 +122,7 @@ export default function StoreMemoryCard({ onStored }: { onStored?: () => void })
         boxShadow: '0 4px 28px rgba(0, 0, 0, 0.45)',
         borderRadius: '1.5rem',
       }}
-      className="p-7 backdrop-blur-xl"
+      className="p-7 backdrop-blur-xl h-full flex flex-col"
     >
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">

@@ -38,7 +38,7 @@ export default function SkillTimeline({ index }: { index: MemoryIndex }) {
       }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       style={CARD_BASE}
-      className="p-7 backdrop-blur-xl"
+      className="p-7 backdrop-blur-xl h-full flex flex-col"
     >
       <div className="flex items-center justify-between gap-4 mb-7">
         <div className="flex items-center gap-3">
