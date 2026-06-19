@@ -70,7 +70,7 @@ export default function SearchMemory({ indexBlobId }: { indexBlobId?: string | n
     try {
       // 1. Ambil blob_id index terbaru (1 fetch saja — bukan O(N) blobs)
       const blobId = indexBlobId ?? await fetchLatestIndexBlobId()
-      if (!blobId) throw new Error('Belum ada skill yang tersimpan di vault ini.')
+      if (!blobId) throw new Error('No skills stored in this vault yet.')
 
       // 2. Fetch index blob (1 HTTP request)
       const index = await fetchIndex(blobId)
@@ -139,7 +139,7 @@ export default function SearchMemory({ indexBlobId }: { indexBlobId?: string | n
             Search Agent Memory
           </h3>
           <p className="text-xs" style={{ color: '#475569' }}>
-            1 index fetch → cosine similarity → top-K skill — bukan O(N) blob fetch
+            1 index fetch → cosine similarity → top-K skills — not O(N) blob fetches
           </p>
         </div>
       </div>
@@ -157,7 +157,7 @@ export default function SearchMemory({ indexBlobId }: { indexBlobId?: string | n
             color: '#E2E8F0',
             outline: 'none',
           }}
-          placeholder="contoh: analisis chart crypto, detect arbitrage..."
+          placeholder="e.g. analyze crypto chart, detect arbitrage..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && onSearch()}
@@ -178,7 +178,7 @@ export default function SearchMemory({ indexBlobId }: { indexBlobId?: string | n
           }}
         >
           {loading ? <Loader2 size={15} className="animate-spin" /> : <Search size={15} />}
-          Cari
+          Search
         </motion.button>
       </div>
 
@@ -207,7 +207,7 @@ export default function SearchMemory({ indexBlobId }: { indexBlobId?: string | n
           >
             {results.length === 0 ? (
               <p className="text-sm text-center py-4" style={{ color: '#475569' }}>
-                Tidak ada skill yang cocok. Coba kata kunci lain.
+                No matching skills found. Try different keywords.
               </p>
             ) : (
               results.map(({ entry, skill, score }, i) => (
@@ -219,8 +219,8 @@ export default function SearchMemory({ indexBlobId }: { indexBlobId?: string | n
       </AnimatePresence>
 
       <p className="mt-5 text-[11px] leading-relaxed" style={{ color: '#334155' }}>
-        Efisiensi pencarian: fetch 1 index blob dari Walrus → cosine similarity lokal → fetch
-        hanya blob skill yang relevan. Bukan O(N) — cocok untuk ribuan skill.
+        Search efficiency: fetch 1 index blob from Walrus → local cosine similarity → fetch
+        only relevant skill blobs. Not O(N) — scales to thousands of skills.
       </p>
     </motion.div>
   )
@@ -305,7 +305,7 @@ function SkillResultCard({
             style={{ color: '#6366F1' }}
           >
             <Hash size={11} />
-            {expanded ? 'Sembunyikan konten' : 'Lihat konten skill'}
+            {expanded ? 'Hide content' : 'View skill content'}
           </button>
           <AnimatePresence>
             {expanded && (

@@ -6,7 +6,7 @@ import AnimatedText from './ui/AnimatedText'
 const metrics = [
   {
     icon: Wallet,
-    label: 'Deposit minimum',
+    label: 'Minimum Deposit',
     value: '1',
     unit: 'SUI',
     gradient: 'linear-gradient(135deg, #818CF8 0%, #6366F1 100%)',
@@ -33,7 +33,7 @@ const metrics = [
   },
   {
     icon: Hourglass,
-    label: 'Durasi (5 SUI)',
+    label: 'Duration (5 SUI)',
     value: '~80',
     unit: 'tahun',
     gradient: 'linear-gradient(135deg, #FDE68A 0%, #F59E0B 100%)',
@@ -180,7 +180,7 @@ const projects: Project[] = [
     images: [
       { gradient: 'linear-gradient(140deg, #6366F1 0%, #818CF8 100%)', label: 'Deposit SUI' },
       { gradient: 'linear-gradient(140deg, #4F46E5 0%, #7C3AED 100%)', label: 'Lock Principal' },
-      { gradient: 'linear-gradient(150deg, #818CF8 0%, #4F46E5 55%, #312E81 100%)', label: 'Vault Aktif' },
+      { gradient: 'linear-gradient(150deg, #818CF8 0%, #4F46E5 55%, #312E81 100%)', label: 'Vault Active' },
     ],
   },
   {
@@ -190,17 +190,17 @@ const projects: Project[] = [
     images: [
       { gradient: 'linear-gradient(140deg, #22D3EE 0%, #3B82F6 100%)', label: 'Supply → Scallop' },
       { gradient: 'linear-gradient(140deg, #2DD4BF 0%, #0D9488 100%)', label: '~8% APY' },
-      { gradient: 'linear-gradient(150deg, #38BDF8 0%, #2563EB 55%, #1E3A8A 100%)', label: 'Yield Mengalir' },
+      { gradient: 'linear-gradient(150deg, #38BDF8 0%, #2563EB 55%, #1E3A8A 100%)', label: 'Yield Flowing' },
     ],
   },
   {
     num: '03',
     label: 'Renewal',
-    title: 'Storage Abadi',
+    title: 'Eternal Storage',
     images: [
       { gradient: 'linear-gradient(140deg, #FDE68A 0%, #F59E0B 100%)', label: 'Keeper Trigger' },
       { gradient: 'linear-gradient(140deg, #34D399 0%, #0D9488 100%)', label: 'Renew Walrus' },
-      { gradient: 'linear-gradient(150deg, #FDE68A 0%, #F59E0B 55%, #B45309 100%)', label: 'Memory Abadi' },
+      { gradient: 'linear-gradient(150deg, #FDE68A 0%, #F59E0B 55%, #B45309 100%)', label: 'Eternal Memory' },
     ],
   },
 ]
@@ -373,7 +373,7 @@ export default function EconomicsSection() {
               fontFamily: '"Helvetica Now Display", "Helvetica Neue", Arial, sans-serif',
             }}
           >
-            Didanai sekali,
+            Funded once,
             <br />
             <span
               style={{
@@ -383,11 +383,11 @@ export default function EconomicsSection() {
                 backgroundClip: 'text',
               }}
             >
-              abadi selamanya.
+              eternal forever.
             </span>
           </h2>
           <AnimatedText
-            text="Principal tidak pernah tersentuh — hanya yield yang dipakai untuk renewal. Satu deposit kecil mendanai storage skill selama puluhan tahun."
+            text="Principal never touched — only yield used for renewal. A small deposit funds skill storage for decades."
             className="mt-5 text-lg max-w-xl mx-auto leading-relaxed"
             style={{ color: '#475569' }}
           />
@@ -423,8 +423,8 @@ export default function EconomicsSection() {
           className="text-center text-sm mt-8"
           style={{ color: '#374151' }}
         >
-          Smart contract: 18/18 tests passing · principal protection · fee
-          distribution otomatis saat renewal.
+          Smart contract: 18/18 tests passing · principal protection · automatic
+          fee distribution on renewal.
         </motion.p>
       </div>
     </section>

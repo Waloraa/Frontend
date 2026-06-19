@@ -149,9 +149,9 @@ export default function HeroSection() {
             maxWidth: 662,
           }}
         >
-          Walora memberi AI agent kemampuan menyimpan & memanggil kembali skill
-          dari pengalaman — tersimpan permanen di Walrus, didanai selamanya oleh
-          yield Scallop. Sekali deposit, memory hidup puluhan tahun.
+          Walora gives AI agents the ability to store & recall skills from
+          experience — permanently stored on Walrus, funded forever by Scallop
+          yield. Deposit once, memory lives for decades.
         </motion.p>
 
         <motion.div

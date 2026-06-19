@@ -15,7 +15,7 @@ const META: Record<
 > = {
   BlobExtended: {
     icon: RefreshCw,
-    label: 'Storage diperpanjang',
+    label: 'Storage extended',
     iconColor: '#22D3EE',
     ringStyle: {
       background: 'rgba(34, 211, 238, 0.1)',
@@ -24,7 +24,7 @@ const META: Record<
   },
   YieldClaimed: {
     icon: Coins,
-    label: 'Yield diklaim',
+    label: 'Yield claimed',
     iconColor: '#818CF8',
     ringStyle: {
       background: 'rgba(129, 140, 248, 0.1)',
@@ -33,7 +33,7 @@ const META: Record<
   },
   BlobRegistered: {
     icon: PlusCircle,
-    label: 'Blob didaftarkan',
+    label: 'Blob registered',
     iconColor: '#34D399',
     ringStyle: {
       background: 'rgba(52, 211, 153, 0.1)',
@@ -49,11 +49,11 @@ const timeAgo = (ms?: number) => {
   if (!ms) return '—'
   const diff = Date.now() - ms
   const d = Math.floor(diff / 86_400_000)
-  if (d > 0) return `${d}h lalu`
+  if (d > 0) return `${d}d ago`
   const h = Math.floor(diff / 3_600_000)
-  if (h > 0) return `${h}j lalu`
+  if (h > 0) return `${h}h ago`
   const m = Math.floor(diff / 60_000)
-  return `${Math.max(1, m)}m lalu`
+  return `${Math.max(1, m)}m ago`
 }
 
 const CARD_BASE: CSSProperties = {
@@ -100,7 +100,7 @@ export default function RenewalLog({ events }: { events: RenewalEvent[] }) {
 
       {events.length === 0 ? (
         <p className="text-sm py-6 text-center" style={{ color: '#374151' }}>
-          Belum ada event renewal.
+          No renewal events yet.
         </p>
       ) : (
         <ul className="flex flex-col">

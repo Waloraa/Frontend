@@ -42,21 +42,21 @@ export default function VaultCard({ vault }: { vault: VaultState }) {
       icon: ShieldCheck,
       label: 'Principal Floor',
       value: sui(vault.principalFloor),
-      hint: 'Tidak pernah tersentuh',
+      hint: 'Never touched',
       gradient: 'linear-gradient(135deg, #10B981 0%, #0D9488 100%)',
     },
     {
       icon: TrendingUp,
       label: 'Claimable Yield',
       value: sui(vault.claimableYield),
-      hint: 'Siap dipakai renewal',
+      hint: 'Ready for renewal',
       gradient: 'linear-gradient(135deg, #818CF8 0%, #6366F1 100%)',
     },
     {
       icon: RefreshCw,
       label: 'Total Renewals',
       value: vault.totalRenewals.toLocaleString('en-US'),
-      hint: `${sui(vault.totalYieldConsumed)} terpakai`,
+      hint: `${sui(vault.totalYieldConsumed)} consumed`,
       gradient: 'linear-gradient(135deg, #22D3EE 0%, #3B82F6 100%)',
     },
   ]
@@ -209,7 +209,7 @@ export default function VaultCard({ vault }: { vault: VaultState }) {
         <span className="font-mono" style={{ color: '#4B5563' }}>
           {short(vault.keeper)}
         </span>{' '}
-        memperpanjang storage otomatis dari yield — principal aman.
+        auto-extends storage from yield — principal safe.
       </p>
     </TiltCard>
     </motion.div>

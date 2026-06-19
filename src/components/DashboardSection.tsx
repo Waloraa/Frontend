@@ -89,7 +89,7 @@ export default function DashboardSection() {
                   className={source === 'live' ? 'animate-pulse' : ''}
                 />
                 {loading
-                  ? 'Memuat…'
+                  ? 'Loading…'
                   : source === 'live'
                   ? 'Live · Sui testnet'
                   : 'Demo data'}
@@ -189,7 +189,7 @@ export default function DashboardSection() {
                   className="text-[11px] leading-relaxed px-3"
                   style={{ color: '#374151' }}
                 >
-                  State dibaca langsung dari Sui testnet & Walrus.
+                  State read directly from Sui testnet & Walrus.
                 </p>
               </div>
             </aside>

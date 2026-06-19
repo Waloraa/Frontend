@@ -122,7 +122,7 @@ export default function CreateVaultCard() {
               Create Your Vault
             </h3>
             <p className="text-xs" style={{ color: '#475569' }}>
-              Deposit SUI → endowment skill memory milikmu
+              Deposit SUI → your endowment skill memory
             </p>
           </div>
         </div>
@@ -141,20 +141,20 @@ export default function CreateVaultCard() {
         >
           <Wallet size={26} className="mx-auto mb-2" style={{ color: '#F59E0B' }} />
           <p className="text-sm" style={{ color: '#94A3B8' }}>
-            Connect wallet Sui untuk membuat vault.
+            Connect your Sui wallet to create a vault.
           </p>
           <p className="text-xs mt-1" style={{ color: '#374151' }}>
-            Pastikan wallet berada di jaringan{' '}
+            Make sure your wallet is on{' '}
             <span className="font-semibold" style={{ color: '#64748B' }}>
               Testnet
             </span>{' '}
-            & punya gas.
+            & has gas.
           </p>
         </div>
       ) : (
         <div className="flex flex-col gap-4">
           <p className="text-xs" style={{ color: '#374151' }}>
-            Terhubung sebagai{' '}
+            Connected as{' '}
             <span className="font-mono" style={{ color: '#64748B' }}>
               {short(account.address)}
             </span>
@@ -201,11 +201,11 @@ export default function CreateVaultCard() {
 
           <div className="flex items-center gap-2 text-xs" style={{ color: '#374151' }}>
             <ShieldCheck size={14} style={{ color: '#34D399' }} />
-            Principal floor otomatis{' '}
+            Auto principal floor{' '}
             <span className="font-semibold" style={{ color: '#64748B' }}>
               {floor} SUI
             </span>{' '}
-            (90% diproteksi) · vault_type 1 · public access
+            (90% protected) · vault_type 1 · public access
           </div>
 
           <motion.button
@@ -234,7 +234,7 @@ export default function CreateVaultCard() {
             {status === 'pending' ? (
               <>
                 <Loader2 size={16} className="animate-spin" />
-                Menunggu approval di wallet…
+                Waiting for wallet approval…
               </>
             ) : (
               <>
@@ -258,7 +258,7 @@ export default function CreateVaultCard() {
                 style={{ color: '#34D399' }}
               >
                 <CheckCircle2 size={16} />
-                Vault berhasil dibuat!
+                Vault created successfully!
               </div>
               {vaultId && (
                 <div className="mt-2 text-xs" style={{ color: '#64748B' }}>
@@ -273,8 +273,8 @@ export default function CreateVaultCard() {
                     {short(vaultId)} <ExternalLink size={11} />
                   </a>
                   <p className="mt-1" style={{ color: '#374151' }}>
-                    Tip: set <code style={{ color: '#818CF8' }}>VAULT_DEMO</code> di{' '}
-                    <code style={{ color: '#818CF8' }}>lib/constants.ts</code> ke ID ini.
+                    Tip: set <code style={{ color: '#818CF8' }}>VAULT_DEMO</code> in{' '}
+                    <code style={{ color: '#818CF8' }}>lib/constants.ts</code> to this ID.
                   </p>
                 </div>
               )}

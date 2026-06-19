@@ -30,7 +30,7 @@ export default function Footer() {
                 fontFamily: '"Helvetica Now Display", "Helvetica Neue", Arial, sans-serif',
               }}
             >
-              Beri agent-mu memory
+              Give your agent memory
               <br />
               <span
                 style={{
@@ -40,12 +40,12 @@ export default function Footer() {
                   backgroundClip: 'text',
                 }}
               >
-                yang tak pernah hilang.
+                that never fades.
               </span>
             </h3>
             <p className="mt-3 text-sm max-w-sm" style={{ color: '#374151' }}>
-              Skill memory abadi untuk AI agent — di atas Walrus, didanai oleh
-              yield. Cukup 5 baris kode.
+              Eternal skill memory for AI agents — on Walrus, funded by yield.
+              Just 5 lines of code.
             </p>
           </div>
           <motion.a

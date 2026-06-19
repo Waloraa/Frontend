@@ -140,7 +140,7 @@ export default function StoreMemoryCard({ onStored }: { onStored?: () => void })
             Store Skill Memory
           </h3>
           <p className="text-xs" style={{ color: '#475569' }}>
-            Upload ke Walrus → register on-chain → disimpan selamanya
+            Upload to Walrus → register on-chain → stored forever
           </p>
         </div>
       </div>
@@ -160,7 +160,7 @@ export default function StoreMemoryCard({ onStored }: { onStored?: () => void })
           >
             <CheckCircle2 size={28} className="mx-auto mb-2" style={{ color: '#34D399' }} />
             <p className="font-semibold text-sm" style={{ color: '#34D399' }}>
-              Skill disimpan ke Walrus & terdaftar on-chain!
+              Skill saved to Walrus & registered on-chain!
             </p>
             {blobId && (
               <p className="mt-2 text-xs font-mono break-all" style={{ color: '#64748B' }}>
@@ -187,7 +187,7 @@ export default function StoreMemoryCard({ onStored }: { onStored?: () => void })
                 border: '1px solid rgba(52, 211, 153, 0.25)',
               }}
             >
-              Simpan skill lain
+              Save another skill
             </button>
           </motion.div>
         ) : (
@@ -201,18 +201,18 @@ export default function StoreMemoryCard({ onStored }: { onStored?: () => void })
                   color: '#FBBF24',
                 }}
               >
-                Connect wallet untuk menyimpan skill.
+                Connect wallet to save a skill.
               </div>
             )}
 
             {/* Name */}
             <label className="flex flex-col gap-1.5">
               <span className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#475569' }}>
-                <FileText size={12} /> Nama Skill
+                <FileText size={12} /> Skill Name
               </span>
               <input
                 style={INPUT}
-                placeholder="contoh: analyze_rsi, summarize_news, detect_arbitrage"
+                placeholder="e.g. analyze_rsi, summarize_news, detect_arbitrage"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 onFocus={(e) => (e.currentTarget.style.boxShadow = '0 0 0 2px rgba(99,102,241,0.4)')}
@@ -223,11 +223,11 @@ export default function StoreMemoryCard({ onStored }: { onStored?: () => void })
             {/* Content */}
             <label className="flex flex-col gap-1.5">
               <span className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#475569' }}>
-                <Brain size={12} /> Konten Skill
+                <Brain size={12} /> Skill Content
               </span>
               <textarea
                 style={TEXTAREA}
-                placeholder="Deskripsikan skill ini secara detail. Agent akan me-load ini saat butuh mengeksekusi tugas serupa."
+                placeholder="Describe this skill in detail. The agent will load it when it needs to execute similar tasks."
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 onFocus={(e) => (e.currentTarget.style.boxShadow = '0 0 0 2px rgba(99,102,241,0.4)')}
@@ -239,11 +239,11 @@ export default function StoreMemoryCard({ onStored }: { onStored?: () => void })
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <label className="flex flex-col gap-1.5">
                 <span className="text-xs font-medium" style={{ color: '#475569' }}>
-                  Deskripsi singkat
+                  Short description
                 </span>
                 <input
                   style={INPUT}
-                  placeholder="Satu kalimat tentang skill ini"
+                  placeholder="One sentence about this skill"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   onFocus={(e) => (e.currentTarget.style.boxShadow = '0 0 0 2px rgba(99,102,241,0.4)')}
@@ -252,7 +252,7 @@ export default function StoreMemoryCard({ onStored }: { onStored?: () => void })
               </label>
               <label className="flex flex-col gap-1.5">
                 <span className="text-xs font-medium flex items-center gap-1.5" style={{ color: '#475569' }}>
-                  <Tag size={12} /> Tags (pisah koma)
+                  <Tag size={12} /> Tags (comma separated)
                 </span>
                 <input
                   style={INPUT}
@@ -277,8 +277,8 @@ export default function StoreMemoryCard({ onStored }: { onStored?: () => void })
               >
                 <Loader2 size={13} className="animate-spin flex-shrink-0" />
                 {status === 'uploading'
-                  ? 'Mengupload skill ke Walrus (permanent)…'
-                  : 'Mendaftarkan blob ke vault on-chain…'}
+                  ? 'Uploading skill to Walrus (permanent)…'
+                  : 'Registering blob to vault on-chain…'}
               </div>
             )}
 
@@ -317,19 +317,19 @@ export default function StoreMemoryCard({ onStored }: { onStored?: () => void })
               {busy ? (
                 <>
                   <Loader2 size={15} className="animate-spin" />
-                  {status === 'uploading' ? 'Upload ke Walrus…' : 'Register on-chain…'}
+                  {status === 'uploading' ? 'Uploading to Walrus…' : 'Register on-chain…'}
                 </>
               ) : (
                 <>
                   <Upload size={15} />
-                  Simpan ke Walrus
+                  Save to Walrus
                 </>
               )}
             </motion.button>
 
             <p className="text-[11px] leading-relaxed" style={{ color: '#334155' }}>
-              Skill disimpan sebagai blob permanent di Walrus testnet (53 epochs) dan
-              terdaftar di vault on-chain. Yield dari Scallop otomatis memperbarui storage selamanya.
+              Skill saved as a permanent blob on Walrus testnet (53 epochs) and
+              registered in the vault on-chain. Scallop yield automatically renews storage forever.
             </p>
           </motion.div>
         )}

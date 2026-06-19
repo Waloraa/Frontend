@@ -60,10 +60,10 @@ interface Msg {
 }
 
 const STARTERS = [
-  'Bagaimana cara analisis RSI untuk crypto?',
-  'Deteksi peluang arbitrase di DEX Sui',
-  'Strategi sizing posisi saat pasar volatil',
-  'Ringkas sentimen berita pasar hari ini',
+  'How to analyze RSI for crypto?',
+  'Detect arbitrage opportunities on Sui DEX',
+  'Position sizing strategy in volatile markets',
+  "Summarize today's market news sentiment",
 ]
 
 export default function AgentChat() {
@@ -183,7 +183,7 @@ export default function AgentChat() {
             </p>
             <p className="text-[11px] flex items-center gap-1.5" style={{ color: '#475569' }}>
               <Database size={10} style={{ color: '#6366F1' }} />
-              Memory dari Walrus · Vault on-chain
+              Memory from Walrus · On-chain vault
             </p>
           </div>
         </div>
@@ -209,7 +209,7 @@ export default function AgentChat() {
           <div className="flex flex-col items-center justify-center h-full gap-4 py-6">
             <Sparkles size={28} style={{ color: '#6366F1' }} />
             <p className="text-sm text-center max-w-xs" style={{ color: '#475569' }}>
-              Tanya apa saja — agent akan cari skill relevan dari Walrus memory sebelum menjawab.
+              Ask anything — the agent searches Walrus memory for relevant skills before answering.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full max-w-sm">
               {STARTERS.map(s => (
@@ -267,7 +267,7 @@ export default function AgentChat() {
                     }}
                   >
                     <Database size={9} />
-                    Menggunakan skill dari Walrus memory
+                    Using skills from Walrus memory
                   </div>
                 )}
 
@@ -311,10 +311,10 @@ export default function AgentChat() {
                     }}
                   >
                     {m.saving
-                      ? <><Loader2 size={11} className="animate-spin" /> Menyimpan ke Walrus…</>
+                      ? <><Loader2 size={11} className="animate-spin" /> Saving to Walrus…</>
                       : m.saved
-                      ? <><Save size={11} /> Tersimpan di Walrus ✓</>
-                      : <><Save size={11} /> Simpan insight ini ke Walrus{!account ? ' (connect wallet)' : ''}</>}
+                      ? <><Save size={11} /> Saved to Walrus ✓</>
+                      : <><Save size={11} /> Save this insight to Walrus{!account ? ' (connect wallet)' : ''}</>}
                   </button>
                 )}
               </div>
@@ -381,7 +381,7 @@ export default function AgentChat() {
             color: '#E2E8F0',
             outline: 'none',
           }}
-          placeholder="Tanya agent — dia cari skill di Walrus dulu…"
+          placeholder="Ask the agent — it searches Walrus first…"
           value={input}
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && !e.shiftKey && send()}

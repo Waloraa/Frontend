@@ -144,14 +144,14 @@ export default function FeaturesSection() {
               fontFamily: '"Helvetica Now Display", "Helvetica Neue", Arial, sans-serif',
             }}
           >
-            Tiga layer,{' '}
+            Three layers,{' '}
             <span style={{
               background: 'linear-gradient(135deg, #818CF8 0%, #38BDF8 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}>
-              satu memory abadi.
+              one eternal memory.
             </span>
           </h2>
         </div>
@@ -179,7 +179,7 @@ export default function FeaturesSection() {
                 <div className="flex-1">
                   <h3 className="font-semibold text-base mb-1" style={{ color: '#E2E8F0' }}>Skill Memory</h3>
                   <p className="text-xs leading-relaxed mb-4" style={{ color: '#64748B' }}>
-                    Agent membuat skill dari pengalaman — prosedur yang bisa dieksekusi ulang. Simpan sekali, panggil selamanya.
+                    Agents create skills from experience — procedures that can be re-executed. Store once, call forever.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {['navigate_ui', 'parse_invoice', 'summarize_doc', 'fetch_data', 'fill_form'].map((s) => (
@@ -204,7 +204,7 @@ export default function FeaturesSection() {
               </div>
               <h3 className="font-semibold text-base mb-1.5" style={{ color: '#E2E8F0' }}>Walrus Storage</h3>
               <p className="text-xs leading-relaxed mb-5" style={{ color: '#64748B' }}>
-                Skills & index tersimpan sebagai blob di Walrus. Storage terbayar otomatis — tak pernah hilang.
+                Skills & index stored as blobs on Walrus. Storage auto-paid — never lost.
               </p>
               <div className="space-y-2.5 mt-auto">
                 {[
@@ -235,7 +235,7 @@ export default function FeaturesSection() {
               </div>
               <h3 className="font-semibold text-sm mb-1" style={{ color: '#E2E8F0' }}>Auto-Funding Vault</h3>
               <p className="text-xs leading-relaxed mb-3.5" style={{ color: '#64748B' }}>
-                Deposit SUI sekali. Keeper memperpanjang storage otomatis dari yield.
+                Deposit SUI once. Keeper extends storage automatically from yield.
               </p>
               <div className="flex items-center gap-1.5 flex-wrap">
                 {['SUI', '→', 'Scallop', '→', 'Yield', '→', 'Renew'].map((s, i) =>
@@ -260,7 +260,7 @@ export default function FeaturesSection() {
               </div>
               <h3 className="font-semibold text-sm mb-1" style={{ color: '#E2E8F0' }}>Scallop Yield</h3>
               <p className="text-xs leading-relaxed mb-3" style={{ color: '#64748B' }}>
-                Principal diproteksi. Hanya yield yang dipakai untuk renewal — endowment abadi.
+                Principal protected. Only yield is used for renewal — eternal endowment.
               </p>
               <div className="flex items-end gap-1.5">
                 <span className="text-4xl font-black leading-none" style={{ color: '#34D399' }}>~8%</span>
@@ -304,7 +304,7 @@ export default function FeaturesSection() {
               </div>
               <h3 className="font-semibold text-sm mb-1.5" style={{ color: '#E2E8F0' }}>Efficient Search</h3>
               <p className="text-xs leading-relaxed mb-4" style={{ color: '#64748B' }}>
-                Pre-computed index + embedding. Cari skill relevan tanpa fetch semua blob.
+                Pre-computed index + embedding. Find relevant skills without fetching all blobs.
               </p>
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs px-3 py-2 rounded-lg"
@@ -328,7 +328,7 @@ export default function FeaturesSection() {
         {/* Scroll hint */}
         <div className="relative px-6 md:px-14 max-w-6xl mx-auto w-full text-center pt-4 pb-7 flex-shrink-0">
           <span className="text-xs" style={{ color: '#334155' }}>
-            Scroll ↓ untuk menjelajah · scroll ↑ untuk kembali
+            Scroll ↓ to explore · scroll ↑ to go back
           </span>
         </div>
       </div>

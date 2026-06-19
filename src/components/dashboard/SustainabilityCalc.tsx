@@ -51,7 +51,7 @@ export default function SustainabilityCalc() {
             Sustainability Calculator
           </h3>
           <p className="text-xs" style={{ color: '#818CF8' }}>
-            Hanya yield yang dipakai — principal tak tersentuh
+            Only yield is used — principal untouched
           </p>
         </div>
       </div>
@@ -71,11 +71,11 @@ export default function SustainabilityCalc() {
               <span>Perpetual</span>
             </div>
             <p className="text-sm mt-1" style={{ color: '#A5B4FC' }}>
-              Yield menutup{' '}
+              Yield covers{' '}
               <span className="font-bold" style={{ color: '#FDE68A' }}>
                 {coverage.toFixed(1)}×
               </span>{' '}
-              biaya storage tahunan — skill tak pernah hilang.
+              annual storage cost — skills never expire.
             </p>
           </>
         ) : (
@@ -83,11 +83,11 @@ export default function SustainabilityCalc() {
             <div className="text-4xl font-bold">
               ~{years.toFixed(0)}{' '}
               <span className="text-xl font-medium" style={{ color: '#818CF8' }}>
-                tahun
+                years
               </span>
             </div>
             <p className="text-sm mt-1" style={{ color: '#A5B4FC' }}>
-              Yield belum menutup biaya — perpanjang dari principal.
+              Yield insufficient — extending from principal.
             </p>
           </>
         )}
@@ -96,7 +96,7 @@ export default function SustainabilityCalc() {
       {/* Gauge */}
       <div className="mt-5">
         <div className="flex justify-between text-xs mb-1.5" style={{ color: '#818CF8' }}>
-          <span>Yield vs biaya storage</span>
+          <span>Yield vs storage cost</span>
           <span className="font-semibold text-white">
             {coverage >= 1 ? '100%+ ' : `${gauge.toFixed(0)}% `}covered
           </span>
@@ -144,8 +144,8 @@ export default function SustainabilityCalc() {
 
       <p className="mt-5 flex items-start gap-2 text-xs" style={{ color: '#818CF8' }}>
         <Sparkles size={14} className="flex-shrink-0 mt-0.5" style={{ color: '#FDE68A' }} />
-        Tanpa yield sekalipun, {deposit} SUI mendanai ~
-        {worstCaseYears.toFixed(0)} tahun storage dari principal.
+        Even without yield, {deposit} SUI funds ~
+        {worstCaseYears.toFixed(0)} years of storage from principal.
       </p>
     </TiltCard>
     </motion.div>
