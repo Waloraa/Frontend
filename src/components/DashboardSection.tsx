@@ -21,6 +21,10 @@ import StoreMemoryCard from './dashboard/StoreMemoryCard'
 import SearchMemory from './dashboard/SearchMemory'
 import AgentChat from './dashboard/AgentChat'
 
+// Toggle the live Claude agent demo. Set to true once ANTHROPIC_API_KEY
+// is configured on Vercel so the /api/chat endpoint works.
+const AGENT_CHAT_ENABLED = false
+
 // Sidebar ala app window — Overview aktif, sisanya dekoratif (hover only).
 const NAV = [
   { icon: LayoutDashboard, label: 'Overview', active: true },
@@ -217,10 +221,14 @@ export default function DashboardSection() {
                 </div>
               </div>
 
-              {/* Agent Demo — working system dengan Walrus memory */}
-              <div className="mt-5">
-                <AgentChat />
-              </div>
+              {/* Agent Demo — working system with Walrus memory.
+                  Hidden until ANTHROPIC_API_KEY is set on Vercel.
+                  Re-enable: set AGENT_CHAT_ENABLED = true. */}
+              {AGENT_CHAT_ENABLED && (
+                <div className="mt-5">
+                  <AgentChat />
+                </div>
+              )}
 
               {/* Store + Search Memory */}
               <div className="mt-5 grid grid-cols-1 xl:grid-cols-2 gap-5">
