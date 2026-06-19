@@ -1,6 +1,49 @@
-// Walrus aggregator client — read-only fetch isi skill memory.
-import { WALRUS_AGGREGATOR } from './constants'
+// Walrus aggregator + publisher client — read & write skill memory.
+import { WALRUS_AGGREGATOR, WALRUS_PUBLISHER, WALRUS_EPOCHS_DEFAULT } from './constants'
 import type { MemoryIndex, Skill } from './types'
+
+// ========== WRITE ==========
+
+export interface BlobResult {
+  blobId: string
+  suiObjectId: string
+  endEpoch: number
+  sizeBytes: number
+  alreadyExisted: boolean
+}
+
+export async function uploadBlob(
+  data: string | Uint8Array,
+  epochs: number = WALRUS_EPOCHS_DEFAULT,
+): Promise<BlobResult> {
+  const body = typeof data === 'string' ? new Blob([data], { type: 'application/json' }) : new Blob([data as BlobPart])
+  // permanent=true: blob tidak bisa didelete — konsisten dengan model "data lives forever"
+  const url = `${WALRUS_PUBLISHER}/v1/blobs?epochs=${epochs}&permanent=true`
+  const res = await fetch(url, { method: 'PUT', body })
+  if (!res.ok) throw new Error(`Walrus upload gagal: ${res.status} ${res.statusText}`)
+  const json = await res.json()
+
+  if (json.newlyCreated) {
+    const obj = json.newlyCreated.blobObject
+    return {
+      blobId: obj.blobId,
+      suiObjectId: obj.id ?? '',
+      endEpoch: obj.storage?.endEpoch ?? 0,
+      sizeBytes: obj.size ?? body.size,
+      alreadyExisted: false,
+    }
+  }
+  if (json.alreadyCertified) {
+    return {
+      blobId: json.alreadyCertified.blobId,
+      suiObjectId: '',
+      endEpoch: json.alreadyCertified.endEpoch ?? 0,
+      sizeBytes: body.size,
+      alreadyExisted: true,
+    }
+  }
+  throw new Error('Walrus response tidak dikenali')
+}
 
 // SDK menyimpan blob_id sebagai UTF-8 bytes dari string base64url.
 // Di event/tabel on-chain ia muncul sebagai hex → decode ke string ASCII.

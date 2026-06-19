@@ -17,6 +17,8 @@ import SkillTimeline from './dashboard/SkillTimeline'
 import RenewalLog from './dashboard/RenewalLog'
 import SustainabilityCalc from './dashboard/SustainabilityCalc'
 import CreateVaultCard from './dashboard/CreateVaultCard'
+import StoreMemoryCard from './dashboard/StoreMemoryCard'
+import SearchMemory from './dashboard/SearchMemory'
 
 // Sidebar ala app window — Overview aktif, sisanya dekoratif (hover only).
 const NAV = [
@@ -212,6 +214,12 @@ export default function DashboardSection() {
                   <SkillTimeline index={index} />
                   <SustainabilityCalc />
                 </div>
+              </div>
+
+              {/* Store + Search Memory — inti produk Waloraa */}
+              <div className="mt-5 grid grid-cols-1 xl:grid-cols-2 gap-5">
+                <StoreMemoryCard onStored={refresh} />
+                <SearchMemory indexBlobId={null} />
               </div>
 
               <div className="mt-5">

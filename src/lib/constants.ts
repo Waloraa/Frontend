@@ -3,6 +3,11 @@
 
 export const SUI_RPC = 'https://fullnode.testnet.sui.io:443'
 export const WALRUS_AGGREGATOR = 'https://aggregator.walrus-testnet.walrus.space'
+export const WALRUS_PUBLISHER = 'https://publisher.walrus-testnet.walrus.space'
+
+// Walrus storage: $0.023/GB/month, paid in WAL. Epoch = 1 day testnet / 2 weeks mainnet.
+// Max prepay = 53 epochs mainnet (~2 years). SDK default = 53 epochs.
+export const WALRUS_EPOCHS_DEFAULT = 53
 
 export const PACKAGE_ID =
   '0x4f67960db2807fe07a6b6647525e20917bdac951100ea135e8c91cb8bbb25dfa'

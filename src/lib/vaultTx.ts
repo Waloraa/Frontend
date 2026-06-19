@@ -15,6 +15,32 @@ const VAULT_TYPE_TESTNET = 1 // 1 = SUI testnet (lihat README generic <Y>)
 const FLOOR_NUMERATOR = 9n
 const FLOOR_DENOMINATOR = 10n
 
+// Register blob yang sudah diupload ke Walrus ke dalam vault on-chain.
+// Argumen: vault::register_blob(vault, blob_id, size_bytes, end_epoch, is_encrypted, &Clock)
+export function buildRegisterBlobTx(
+  vaultId: string,
+  blobId: string,
+  sizeBytes: number,
+  endEpoch: number,
+  isEncrypted = false,
+): Transaction {
+  const blobIdBytes = Array.from(new TextEncoder().encode(blobId))
+  const tx = new Transaction()
+  tx.moveCall({
+    target: `${PACKAGE_ID}::vault::register_blob`,
+    typeArguments: [SUI_TYPE],
+    arguments: [
+      tx.object(vaultId),
+      tx.pure.vector('u8', blobIdBytes),
+      tx.pure.u64(sizeBytes),
+      tx.pure.u64(endEpoch),
+      tx.pure.bool(isEncrypted),
+      tx.object(CLOCK_ID),
+    ],
+  })
+  return tx
+}
+
 export function buildCreateVaultTx(depositSui: number, label: string): Transaction {
   const depositMist = BigInt(Math.round(depositSui * MIST_PER_SUI))
   const floorMist = (depositMist * FLOOR_NUMERATOR) / FLOOR_DENOMINATOR
