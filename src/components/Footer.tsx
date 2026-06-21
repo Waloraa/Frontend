@@ -4,12 +4,12 @@ import { Github, Twitter } from 'lucide-react'
 const links = {
   Product: ['How it Works', 'Dashboard', 'Economics', 'SDK'],
   Resources: ['README', 'Demo Guide', 'Smart Contracts', 'Audit'],
-  Network: ['Sui Testnet', 'Walrus', 'Scallop', 'MemWal'],
+  Network: ['Sui Mainnet', 'Walrus', 'Scallop', 'MemWal'],
   Legal: ['MIT License', 'Privacy', 'Terms'],
 }
 
 const socials = [
-  { icon: Github, label: 'GitHub', href: 'https://github.com/NousResearch/hermes-agent' },
+  { icon: Github, label: 'GitHub', href: 'https://github.com/Waloraa' },
   { icon: Twitter, label: 'Twitter', href: '#' },
 ]
 

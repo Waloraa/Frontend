@@ -15,8 +15,8 @@ const metrics = [
   },
   {
     icon: TrendingUp,
-    label: 'APY Scallop (est.)',
-    value: '~8',
+    label: 'Live Scallop APY',
+    value: '~2.9',
     unit: '%',
     gradient: 'linear-gradient(135deg, #34D399 0%, #0D9488 100%)',
     glow: 'rgba(52,211,153,0.4)',
@@ -33,9 +33,9 @@ const metrics = [
   },
   {
     icon: Hourglass,
-    label: 'Duration (5 SUI)',
-    value: '~80',
-    unit: 'years',
+    label: 'Lifetime',
+    value: '∞',
+    unit: 'perpetual',
     gradient: 'linear-gradient(135deg, #FDE68A 0%, #F59E0B 100%)',
     glow: 'rgba(253,230,138,0.4)',
     hoverShadow: '0 0 0 1px rgba(253,230,138,0.22), 0 20px 48px rgba(245,158,11,0.1), 0 8px 20px rgba(0,0,0,0.6)',

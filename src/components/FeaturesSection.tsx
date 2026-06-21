@@ -180,9 +180,9 @@ export default function FeaturesSection() {
                   <Brain size={20} className="text-white" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-base mb-1" style={{ color: '#E2E8F0' }}>Skill Memory</h3>
+                  <h3 className="font-semibold text-base mb-1" style={{ color: '#E2E8F0' }}>Persistent Memory</h3>
                   <p className="text-xs leading-relaxed mb-4" style={{ color: '#64748B' }}>
-                    Agents create skills from experience — procedures that can be re-executed. Store once, call forever.
+                    Agents accumulate memory from experience and recall it across sessions. Store once, remember forever.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {['navigate_ui', 'parse_invoice', 'summarize_doc', 'fetch_data', 'fill_form'].map((s) => (
@@ -207,11 +207,11 @@ export default function FeaturesSection() {
               </div>
               <h3 className="font-semibold text-base mb-1.5" style={{ color: '#E2E8F0' }}>Walrus Storage</h3>
               <p className="text-xs leading-relaxed mb-5" style={{ color: '#64748B' }}>
-                Skills & index stored as blobs on Walrus. Storage auto-paid — never lost.
+                Memory stored as encrypted blobs on Walrus. Storage auto-paid — never lost.
               </p>
               <div className="space-y-2.5 mt-auto">
                 {[
-                  { label: 'Skills Stored', value: '∞', sub: 'permanent' },
+                  { label: 'Memories Stored', value: '∞', sub: 'permanent' },
                   { label: 'Manual Payments', value: '0', sub: 'needed' },
                   { label: 'Availability', value: '100%', sub: 'uptime' },
                 ].map((stat) => (
@@ -288,12 +288,12 @@ export default function FeaturesSection() {
               </div>
               <div className="rounded-xl p-4 font-mono text-xs leading-relaxed overflow-x-auto"
                 style={{ background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(99,102,241,0.15)' }}>
-                <div><span style={{ color: '#818CF8' }}>from</span> <span style={{ color: '#38BDF8' }}>walora</span> <span style={{ color: '#818CF8' }}>import</span> <span style={{ color: '#E2E8F0' }}>MemoryClient</span></div>
-                <div className="mt-1"><span style={{ color: '#E2E8F0' }}>client</span> <span style={{ color: '#64748B' }}>=</span> <span style={{ color: '#38BDF8' }}>MemoryClient</span><span style={{ color: '#E2E8F0' }}>(vault_id)</span></div>
-                <div className="mt-2.5"><span style={{ color: '#64748B' }}># Save a skill</span></div>
-                <div><span style={{ color: '#E2E8F0' }}>client.</span><span style={{ color: '#34D399' }}>save_skill</span><span style={{ color: '#E2E8F0' }}>(name, procedure)</span></div>
-                <div className="mt-2.5"><span style={{ color: '#64748B' }}># Retrieve on next task</span></div>
-                <div><span style={{ color: '#E2E8F0' }}>context</span> <span style={{ color: '#64748B' }}>=</span> <span style={{ color: '#E2E8F0' }}>client.</span><span style={{ color: '#34D399' }}>get_context</span><span style={{ color: '#E2E8F0' }}>(query)</span></div>
+                <div><span style={{ color: '#818CF8' }}>from</span> <span style={{ color: '#38BDF8' }}>waloraa</span> <span style={{ color: '#818CF8' }}>import</span> <span style={{ color: '#E2E8F0' }}>WaloraaMemory</span></div>
+                <div className="mt-1"><span style={{ color: '#E2E8F0' }}>memory</span> <span style={{ color: '#64748B' }}>=</span> <span style={{ color: '#38BDF8' }}>WaloraaMemory</span><span style={{ color: '#E2E8F0' }}>(vault_id)</span></div>
+                <div className="mt-2.5"><span style={{ color: '#64748B' }}># Remember a durable fact</span></div>
+                <div><span style={{ color: '#E2E8F0' }}>memory.</span><span style={{ color: '#34D399' }}>remember</span><span style={{ color: '#E2E8F0' }}>(text)</span></div>
+                <div className="mt-2.5"><span style={{ color: '#64748B' }}># Recall on next task</span></div>
+                <div><span style={{ color: '#E2E8F0' }}>context</span> <span style={{ color: '#64748B' }}>=</span> <span style={{ color: '#E2E8F0' }}>memory.</span><span style={{ color: '#34D399' }}>recall</span><span style={{ color: '#E2E8F0' }}>(query)</span></div>
               </div>
             </div>
           </HoverCard>
