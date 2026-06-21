@@ -35,3 +35,29 @@ export const EXPLORER_OBJECT = (id: string) =>
   `https://suiscan.xyz/testnet/object/${id}`
 export const EXPLORER_TX = (digest: string) =>
   `https://suiscan.xyz/testnet/tx/${digest}`
+
+// ── LIVE ON SUI MAINNET (real SUI, deployed 2026-06-21) ──────────────────────
+// The economic loop is proven on mainnet, not just testnet: a real SUI-funded
+// endowment vault, yield claimed on-chain, principal protected.
+export const MAINNET = {
+  packageId: '0x6ea861c0a3587ad2d1fcfe0a4cc5edc3384338aec76e415655883ec190f4ac39',
+  configId: '0x43ee69b9f263b7c2fa83352db3c16073cf4ae700d5dd05fd93b1a2bb25cb83b4',
+  // Real SUI endowment vault: 0.5 SUI principal, 0.4 SUI protected floor.
+  vaultId: '0x1a9f3667a4fe6578fa28d69fba96070bdd74431caff3d548dc28ae7afc03f6ab',
+  publishTx: 'EEi83G9bL5pW5c6ndZ3t18hRYVJfwfWpoAavzSQKReN4',
+  // execute_renewal: claimed 0.1 SUI of yield, principal floor untouched.
+  yieldClaimedTx: '4VQjJtcZmUcFFducftqEo27Huc2hMMdgD3xV4Q9Pzeop',
+} as const
+
+// Real Scallop lending yield, read live from mainnet (1 sSUI → SUI conversion
+// rate; growth above principal IS the yield). Snapshot 2026-06-21.
+export const SCALLOP = {
+  coin: 'sui',
+  conversionRate: 1.1056, // 1 sSUI = 1.1056 SUI → ~10.6% accrued
+  supplyApy: 0.0288, // ~2.88% live supply APY
+} as const
+
+export const EXPLORER_MAINNET_OBJECT = (id: string) =>
+  `https://suiscan.xyz/mainnet/object/${id}`
+export const EXPLORER_MAINNET_TX = (digest: string) =>
+  `https://suiscan.xyz/mainnet/tx/${digest}`

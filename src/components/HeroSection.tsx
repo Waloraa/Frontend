@@ -149,10 +149,9 @@ export default function HeroSection() {
             maxWidth: 662,
           }}
         >
-          Walrus Memory gives agents persistent skills. Walora makes them
-          self-sustaining — deposit SUI once into an endowment vault, Scallop
-          yield pays for storage renewal forever. Principal protected, memory
-          eternal.
+          The economic layer for autonomous agents. Endow an agent once —
+          Scallop yield pays to renew its memory on Walrus forever, with no
+          human to top up. Principal protected, memory eternal. Live on mainnet.
         </motion.p>
 
         <motion.div
